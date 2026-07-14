@@ -1,0 +1,76 @@
+@import '../styles/variables.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font stacks — next/font exposes --font-inter/--font-inter-tight/--font-jetbrains on <html> */
+:root{
+--font-sans:var(--font-inter),-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+--font-display:var(--font-inter-tight),var(--font-inter),-apple-system,sans-serif;
+--font-mono:var(--font-jetbrains),ui-monospace,'SFMono-Regular',Menlo,monospace;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;font-family:var(--font-sans);font-size:var(--text-body-size);line-height:var(--text-body-lh);color:var(--text-body);background:var(--surface-canvas);-webkit-font-smoothing:antialiased}
+a{color:var(--text-link);text-decoration:none}
+a:hover{color:var(--text-link-hover)}
+::selection{background:var(--color-selection-bg);color:var(--color-selection-text)}
+:focus-visible{outline:none;box-shadow:var(--focus-ring);border-radius:var(--radius-xs)}
+
+/* DS type roles */
+.t-hero{font-family:var(--font-display);font-size:var(--text-hero-size);line-height:var(--text-hero-lh);letter-spacing:var(--text-hero-ls);font-weight:var(--text-hero-weight);color:var(--text-heading);text-wrap:balance;margin:0}
+.t-display{font-family:var(--font-display);font-size:var(--text-display-size);line-height:var(--text-display-lh);letter-spacing:var(--text-display-ls);font-weight:var(--text-display-weight);color:var(--text-heading);text-wrap:balance;margin:0}
+.t-h1{font-family:var(--font-display);font-size:var(--text-h1-size);line-height:var(--text-h1-lh);letter-spacing:var(--text-h1-ls);font-weight:var(--text-h1-weight);color:var(--text-heading);text-wrap:balance;margin:0}
+.t-h2{font-family:var(--font-display);font-size:var(--text-h2-size);line-height:var(--text-h2-lh);letter-spacing:var(--text-h2-ls);font-weight:var(--text-h2-weight);color:var(--text-heading);text-wrap:balance;margin:0}
+.t-h3{font-size:var(--text-h3-size);line-height:var(--text-h3-lh);font-weight:var(--text-h3-weight);color:var(--text-heading);margin:0}
+.t-h4{font-size:var(--text-h4-size);line-height:var(--text-h4-lh);font-weight:var(--text-h4-weight);color:var(--text-heading);margin:0}
+.t-eyebrow{font-size:var(--text-eyebrow-size);line-height:var(--text-eyebrow-lh);letter-spacing:var(--text-eyebrow-ls);font-weight:var(--text-eyebrow-weight);text-transform:uppercase;color:var(--color-primary);margin:0}
+.t-eyebrow-ondark{color:var(--blue-300)}
+.t-sub{font-size:var(--text-subheading-size);line-height:var(--text-subheading-lh);font-weight:var(--text-subheading-weight);margin:0}
+.t-body-lg{font-size:var(--text-body-lg-size);line-height:var(--text-body-lg-lh);margin:0;text-wrap:pretty}
+.t-caption{font-size:var(--text-caption-size);line-height:var(--text-caption-lh);color:var(--text-muted);margin:0}
+.t-micro{font-size:var(--text-micro-size);line-height:var(--text-micro-lh);letter-spacing:var(--text-micro-ls);font-weight:var(--text-micro-weight);text-transform:uppercase}
+
+/* Soft radial brand tint — the only permitted background texture */
+.bg-hero-tint{background:radial-gradient(120% 90% at 70% 0%,rgba(91,61,240,.07) 0%,rgba(30,155,224,.05) 45%,transparent 75%),var(--surface-canvas)}
+.bg-dark-tint{background:radial-gradient(110% 80% at 30% 100%,rgba(91,61,240,.14) 0%,rgba(30,155,224,.08) 45%,transparent 75%),var(--surface-dark)}
+/* DS Hero glow — violet top-left, blue bottom-right (from components/sections/Hero) */
+.bg-hero-glow{background:radial-gradient(circle at 15% 20%,color-mix(in srgb,var(--violet-500) 28%,transparent),transparent 55%),radial-gradient(circle at 85% 75%,color-mix(in srgb,var(--blue-500) 25%,transparent),transparent 55%)}
+
+/* Type-role color override for dark surfaces (declared after the roles so cascade wins) */
+.ondark-heading{color:var(--ink-0)}
+
+/* Gallery marquee — transform-only infinite drift, paused on hover */
+@keyframes marquee-x{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-track{display:flex;width:max-content;animation:marquee-x var(--marquee-dur,52s) linear infinite}
+.marquee-reverse{animation-direction:reverse}
+.marquee-paused:hover .marquee-track{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+
+/* Global-presence node pulse */
+@keyframes node-pulse{0%{transform:scale(.6);opacity:.8}80%{transform:scale(2.4);opacity:0}100%{transform:scale(2.4);opacity:0}}
+.node-pulse{transform-origin:center;transform-box:fill-box;animation:node-pulse 3.2s var(--ease-out) infinite}
+@media (prefers-reduced-motion:reduce){.node-pulse{animation:none;opacity:0}}
+
+/* Hero scroll cue — drawn line loop */
+@keyframes scroll-cue{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.scroll-cue{animation:scroll-cue 2.4s var(--ease-standard) infinite}
+
+/* Animated-underline nav/inline link */
+.link-underline{position:relative}
+.link-underline::after{content:'';position:absolute;left:0;bottom:-3px;height:1px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform var(--duration-base) var(--ease-out)}
+.link-underline:hover::after,.link-underline[data-active='true']::after{transform:scaleX(1);transform-origin:left}
+
+/* Reveal wrappers render final state when JS/GSAP is absent or reduced motion is on */
+@media (prefers-reduced-motion:reduce){[data-reveal]{opacity:1!important;transform:none!important;filter:none!important}}
+
+/* Gallery / Portfolio: filtered-out items leave the flow so Flip can repack the grid */
+.gallery-item--hidden{display:none}
+.portfolio-card--hidden{display:none}
+
+/* Hidden scrollbar for the filter chip rail (still scrollable/keyboard-accessible) */
+.no-scrollbar{scrollbar-width:none;-ms-overflow-style:none}
+.no-scrollbar::-webkit-scrollbar{display:none}

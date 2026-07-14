@@ -1,0 +1,88 @@
+/* OneSpheree Design System tokens — copied verbatim from the DS (fonts delivered via next/font in app/layout.tsx). */
+:root{
+/* --- Base palette (sampled from the OneSpheree mark's violet→blue gradient) --- */
+--violet-50:#F1EDFE;--violet-100:#E4DCFC;--violet-300:#B6A2F7;--violet-500:#5B3DF0;--violet-600:#4B2FE0;--violet-700:#3D26A8;--violet-900:#241664;
+--blue-50:#E7F5FC;--blue-100:#CDEBF9;--blue-300:#7CCBEF;--blue-500:#1E9BE0;--blue-600:#1682BE;--blue-700:#106391;
+--teal-500:#17A398;--amber-500:#C97A1E;--rose-500:#D1637A;--red-500:#D14343;--green-500:#1E9E6B;
+/* --- Neutral / ink scale (cool, blue-tinted grays) --- */
+--ink-0:#FFFFFF;--ink-50:#F6F7FA;--ink-100:#EDEFF3;--ink-200:#D8DCE3;--ink-300:#B4BAC6;
+--ink-400:#8891A0;--ink-500:#636B7A;--ink-600:#454B59;--ink-700:#2B303C;--ink-800:#1B1F29;--ink-900:#12151C;--ink-950:#0A0C10;
+/* --- Semantic: brand --- */
+--color-primary:var(--violet-500);--color-primary-hover:var(--violet-600);--color-primary-active:var(--violet-700);
+--color-primary-soft:var(--violet-50);--color-primary-soft-hover:var(--violet-100);
+--color-secondary:var(--blue-500);--color-secondary-hover:var(--blue-600);--color-secondary-soft:var(--blue-50);
+/* --- Semantic: surfaces --- */
+--surface-canvas:var(--ink-50);--surface-card:var(--ink-0);--surface-elevated:var(--ink-0);
+--surface-dark:var(--ink-950);--surface-dark-elevated:#12151F;--surface-sunken:var(--ink-100);
+/* --- Semantic: text --- */
+--text-heading:var(--ink-950);--text-body:#3C4250;--text-muted:var(--ink-500);
+--text-on-dark:var(--ink-50);--text-on-dark-muted:#A7ADBB;--text-disabled:var(--ink-400);
+--text-link:var(--color-primary);--text-link-hover:var(--color-primary-hover);
+/* --- Borders --- */
+--border-default:var(--ink-200);--border-strong:var(--ink-300);--border-dark:var(--ink-700);--border-focus:var(--color-primary);
+/* --- Feedback --- */
+--color-success:var(--green-500);--color-success-soft:#E6F7EF;
+--color-warning:var(--amber-500);--color-warning-soft:#FCF1E1;
+--color-danger:var(--red-500);--color-danger-soft:#FBEAEA;
+--color-info:#2F6FE4;--color-info-soft:#EAF1FC;
+/* --- Interaction states --- */
+--focus-ring:0 0 0 3px rgba(91,61,240,.35);
+--color-selection-bg:var(--violet-50);--color-selection-text:var(--violet-700);
+--color-disabled-bg:var(--ink-100);--color-disabled-text:var(--ink-400);
+--overlay-scrim:rgba(10,12,16,.6);--overlay-scrim-strong:rgba(10,12,16,.82);
+/* --- Data / illustration palette --- */
+--chart-1:var(--violet-500);--chart-2:var(--blue-500);--chart-3:var(--teal-500);--chart-4:var(--amber-500);--chart-5:var(--rose-500);--chart-6:var(--ink-400);
+/* --- Background accents --- */
+--accent-violet-tint:var(--violet-50);--accent-blue-tint:var(--blue-50);
+--gradient-brand:linear-gradient(135deg,var(--violet-500) 0%,var(--blue-500) 100%);
+--gradient-brand-soft:linear-gradient(135deg,var(--violet-50) 0%,var(--blue-50) 100%);
+/* --- Typography scale --- */
+--text-hero-size:4rem;--text-hero-lh:1.05;--text-hero-ls:-0.02em;--text-hero-weight:800;
+--text-display-size:3rem;--text-display-lh:1.1;--text-display-ls:-0.015em;--text-display-weight:700;
+--text-h1-size:2.5rem;--text-h1-lh:1.15;--text-h1-ls:-0.01em;--text-h1-weight:700;
+--text-h2-size:2rem;--text-h2-lh:1.2;--text-h2-ls:-0.01em;--text-h2-weight:700;
+--text-h3-size:1.625rem;--text-h3-lh:1.25;--text-h3-weight:600;
+--text-h4-size:1.375rem;--text-h4-lh:1.3;--text-h4-weight:600;
+--text-eyebrow-size:.875rem;--text-eyebrow-lh:1.2;--text-eyebrow-ls:.08em;--text-eyebrow-weight:700;
+--text-subheading-size:1.25rem;--text-subheading-lh:1.4;--text-subheading-weight:500;
+--text-body-lg-size:1.125rem;--text-body-lg-lh:1.6;--text-body-lg-weight:400;
+--text-body-size:1rem;--text-body-lh:1.6;--text-body-weight:400;
+--text-body-sm-size:.875rem;--text-body-sm-lh:1.5;--text-body-sm-weight:400;
+--text-caption-size:.8125rem;--text-caption-lh:1.4;--text-caption-weight:400;
+--text-nav-size:.9375rem;--text-nav-lh:1.2;--text-nav-weight:500;
+--text-button-size:.9375rem;--text-button-lh:1.2;--text-button-weight:600;--text-button-ls:.01em;
+--text-label-size:.875rem;--text-label-lh:1.3;--text-label-weight:600;
+--text-table-size:.875rem;--text-table-lh:1.4;--text-table-weight:400;
+--text-badge-size:.75rem;--text-badge-lh:1.2;--text-badge-weight:600;--text-badge-ls:.04em;
+--text-micro-size:.6875rem;--text-micro-lh:1.2;--text-micro-weight:700;--text-micro-ls:.08em;
+--text-code-size:.875rem;--text-code-lh:1.5;
+/* --- Spacing --- */
+--space-025:2px;--space-05:4px;--space-1:8px;--space-15:12px;--space-2:16px;--space-3:24px;--space-4:32px;
+--space-5:40px;--space-6:48px;--space-8:64px;--space-10:80px;--space-12:96px;--space-16:128px;--space-20:160px;--space-24:192px;
+--container-max:1280px;--container-narrow:960px;--content-reading-width:680px;
+--gutter:24px;--section-space-y:96px;--section-space-y-sm:64px;
+/* --- Radius --- */
+--radius-xs:4px;--radius-sm:6px;--radius-md:10px;--radius-lg:16px;--radius-xl:24px;--radius-2xl:32px;--radius-full:999px;
+/* --- Elevation --- */
+--shadow-xs:0 1px 2px rgba(15,17,23,.06);
+--shadow-sm:0 2px 6px rgba(15,17,23,.08);
+--shadow-md:0 8px 24px rgba(15,17,23,.10);
+--shadow-lg:0 20px 48px rgba(15,17,23,.14);
+--shadow-dropdown:0 12px 32px rgba(15,17,23,.16);
+--shadow-nav:0 1px 0 rgba(15,17,23,.06),0 4px 16px rgba(15,17,23,.05);
+--shadow-dark-lg:0 20px 48px rgba(0,0,0,.55);
+--shadow-focus:var(--focus-ring);
+/* --- Motion --- */
+--ease-standard:cubic-bezier(.4,0,.2,1);
+--ease-out:cubic-bezier(0,0,.2,1);
+--ease-in:cubic-bezier(.4,0,1,1);
+--duration-fast:120ms;--duration-base:200ms;--duration-slow:360ms;--duration-page:480ms;
+/* --- Layout --- */
+--bp-sm:480px;--bp-md:768px;--bp-lg:1024px;--bp-xl:1280px;--bp-2xl:1440px;
+--z-dropdown:100;--z-sticky:200;--z-overlay:300;--z-modal:400;--z-toast:500;
+}
+@media (max-width:768px){:root{
+--text-hero-size:2.75rem;--text-display-size:2.25rem;--text-h1-size:2rem;--text-h2-size:1.625rem;--text-h3-size:1.375rem;
+--section-space-y:64px;--section-space-y-sm:40px;--gutter:16px;
+}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
