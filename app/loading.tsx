@@ -1,10 +1,20 @@
+import { BootFrame } from '@/components/loader/FableLoader';
+
+/**
+ * Route-loading fallback. Renders the Fable loader's exact opening frame
+ * (dark backdrop, all animated elements are still at opacity 0 at t=0), so
+ * the compile/stream window reads as the loader beginning — the piece then
+ * continues seamlessly from this frame once the page mounts. Mostly a dev
+ * artifact: the homepage is static in production and serves instantly.
+ */
 export default function Loading() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-canvas" role="status" aria-label="Loading">
-      <div className="flex flex-col items-center gap-2">
-        <div className="h-10 w-10 animate-pulse rounded-full bg-brand" />
-        <p className="t-caption">Preparing your experience…</p>
-      </div>
+    <div
+      role="status"
+      aria-label="Loading"
+      style={{ position: 'fixed', inset: 0, zIndex: 600, background: '#02040a' }}
+    >
+      <BootFrame />
     </div>
   );
 }

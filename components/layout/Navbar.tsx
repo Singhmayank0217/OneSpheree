@@ -43,7 +43,7 @@ export function Navbar({ dark }: { dark?: boolean }) {
         <div className="mx-auto flex max-w-container items-center justify-between px-gutter py-[14px]">
           <Link href="/" aria-label="OneSpheree home" className="flex items-center gap-[10px] hover:no-underline">
             <Image
-              src="/logos/onespheree-mark.png"
+              src="/loader/onespheree-logo-light.png"
               alt=""
               width={36}
               height={36}
