@@ -35,7 +35,7 @@ export default function DueDiligencePage() {
   const { hero, overview, sections, industries, why, process, outcomes, cta } = dueDiligencePage;
   const [corporate, financial, vendor, legal, employee, risk] = sections;
   return (
-    <>
+    <div className="dd-theme">
       <ServiceHero hero={hero} visual={<VerificationIllustration className="aspect-square w-full" />} />
       <ServiceOverview overview={overview} />
       <CorporateDDSection section={corporate} />
@@ -49,6 +49,6 @@ export default function DueDiligencePage() {
       {process && <ProcessSection {...process} />}
       {outcomes && <OutcomesSection {...outcomes} />}
       {cta && <ServiceCtaSection cta={cta} />}
-    </>
+    </div>
   );
 }

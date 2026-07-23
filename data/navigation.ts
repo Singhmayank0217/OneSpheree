@@ -6,7 +6,7 @@ export interface NavItem {
 }
 
 /** Routes that open on a dark hero — the transparent navbar uses on-dark text there. */
-export const darkHeroRoutes = ['/', '/services/digital-marketing', '/services/due-diligence'];
+export const darkHeroRoutes = ['/', '/services/digital-marketing', '/services/due-diligence', '/services/fire-safety'];
 
 /**
  * Primary navigation. Home is the logo, Contact is the CTA button — so the

@@ -35,7 +35,7 @@ export default function DigitalMarketingPage() {
   const { hero, overview, sections, industries, why, process, outcomes, cta } = digitalMarketingPage;
   const [seo, performance, social, web, content, leadGen, automation, analytics] = sections;
   return (
-    <>
+    <div className="dm-theme">
       <ServiceHero hero={hero} />
       <ServiceOverview overview={overview} />
       <SeoSection section={seo} />
@@ -51,6 +51,6 @@ export default function DigitalMarketingPage() {
       {process && <ProcessSection {...process} />}
       {outcomes && <OutcomesSection {...outcomes} />}
       {cta && <ServiceCtaSection cta={cta} />}
-    </>
+    </div>
   );
 }
