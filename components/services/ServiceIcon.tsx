@@ -56,6 +56,11 @@ const EXTRA: Record<string, string> = {
   sparkles:
     'M12 3l1.9 5.8a2 2 0 001.3 1.3L21 12l-5.8 1.9a2 2 0 00-1.3 1.3L12 21l-1.9-5.8a2 2 0 00-1.3-1.3L3 12l5.8-1.9a2 2 0 001.3-1.3zM5 3v4M3 5h4M19 17v4M17 19h4',
   flask: 'M10 2v6.5L4.5 19a2 2 0 001.8 3h11.4a2 2 0 001.8-3L14 8.5V2M8.5 2h7M7 15h10',
+  store: 'M4 9l1.5-5h13L20 9M4 9v11a1 1 0 001 1h14a1 1 0 001-1V9M4 9h16M9 21v-6h6v6',
+  package: 'M12 2l9 5v10l-9 5-9-5V7zM3.3 7L12 12l8.7-5M12 12v10',
+  shoppingBag: 'M6 2l-4 4v14a2 2 0 002 2h16a2 2 0 002-2V6l-4-4zM2 6h20M16 10a4 4 0 01-8 0',
+  image: 'M3 3h18v18H3zM8.5 10a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM21 15l-5-5L5 21',
+  barcode: 'M4 5v14M8 5v14M11 5v9M14 5v14M17 5v9M20 5v14',
   lightbulb: 'M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7c.7.6 1 1.5 1 2.3h6c0-.8.3-1.7 1-2.3A7 7 0 0012 2z',
   graduationCap: 'M22 10L12 5 2 10l10 5 10-5zM6 12v5c0 1 2.7 3 6 3s6-2 6-3v-5M22 10v6',
   settings:

@@ -73,6 +73,85 @@
 --gradient-brand-soft:linear-gradient(135deg,var(--violet-50) 0%,var(--blue-50) 100%);
 }
 
+/* ── Reselling & E-Commerce page theme — Amber / Gold ─────────────────────
+   Violet slot → amber (#F59E0B primary / #FBBF24 glow), blue slot → a warmer
+   gold: a premium commerce-platform identity, not neon orange. Surfaces stay
+   dark charcoal; layout/type/motion unchanged. */
+.ec-theme{
+--violet-50:#FFFBEB;--violet-100:#FEF3C7;--violet-200:#FDE68A;--violet-300:#FCD34D;--violet-400:#FBBF24;--violet-500:#F59E0B;--violet-600:#D97706;--violet-700:#B45309;--violet-900:#78350F;
+--blue-50:#FEFCE8;--blue-100:#FEF9C3;--blue-200:#FEF08A;--blue-300:#FDE047;--blue-400:#FACC15;--blue-500:#EAB308;--blue-600:#CA8A04;--blue-700:#A16207;
+--color-primary:var(--violet-500);--color-primary-hover:var(--violet-600);--color-primary-active:var(--violet-700);
+--color-primary-soft:var(--violet-50);--color-primary-soft-hover:var(--violet-100);
+--color-secondary:var(--blue-500);--color-secondary-hover:var(--blue-600);--color-secondary-soft:var(--blue-50);
+--text-link:var(--color-primary);--text-link-hover:var(--color-primary-hover);
+--border-focus:var(--color-primary);
+--focus-ring:0 0 0 3px rgba(245,158,11,.35);
+--color-selection-bg:var(--violet-100);--color-selection-text:var(--violet-700);
+--gradient-brand:linear-gradient(135deg,var(--violet-500) 0%,var(--blue-500) 100%);
+--gradient-brand-soft:linear-gradient(135deg,var(--violet-50) 0%,var(--blue-50) 100%);
+}
+
+/* ── Manpower Solutions page theme — Royal Blue ───────────────────────────
+   Violet slot → royal blue (#2563EB primary / #60A5FA glow), blue slot → a
+   lighter sky blue: a professional workforce identity, corporate and
+   trustworthy. Surfaces stay dark charcoal; layout/type/motion unchanged. */
+.mp-theme{
+--violet-50:#EFF6FF;--violet-100:#DBEAFE;--violet-200:#BFDBFE;--violet-300:#93C5FD;--violet-400:#60A5FA;--violet-500:#2563EB;--violet-600:#1D4ED8;--violet-700:#1E40AF;--violet-900:#172554;
+--blue-50:#F0F9FF;--blue-100:#E0F2FE;--blue-200:#BAE6FD;--blue-300:#7DD3FC;--blue-400:#38BDF8;--blue-500:#0EA5E9;--blue-600:#0284C7;--blue-700:#0369A1;
+--color-primary:var(--violet-500);--color-primary-hover:var(--violet-600);--color-primary-active:var(--violet-700);
+--color-primary-soft:var(--violet-50);--color-primary-soft-hover:var(--violet-100);
+--color-secondary:var(--blue-500);--color-secondary-hover:var(--blue-600);--color-secondary-soft:var(--blue-50);
+--text-link:var(--color-primary);--text-link-hover:var(--color-primary-hover);
+--border-focus:var(--color-primary);
+--focus-ring:0 0 0 3px rgba(37,99,235,.35);
+--color-selection-bg:var(--violet-100);--color-selection-text:var(--violet-700);
+--gradient-brand:linear-gradient(135deg,var(--violet-500) 0%,var(--blue-500) 100%);
+--gradient-brand-soft:linear-gradient(135deg,var(--violet-50) 0%,var(--blue-50) 100%);
+}
+
+/* ── Sales & Consulting page theme — Cyan ─────────────────────────────────
+   Violet slot → cyan (#06B6D4 primary), blue slot → an azure companion whose
+   300 step is the brief's #67E8F9 secondary glow: a strategy / advisory
+   identity — executive, data-literate, expansive — in the register of a
+   management-consulting practice. Surfaces stay dark charcoal; layout, type
+   and motion are unchanged. */
+.sc-theme{
+--violet-50:#ECFEFF;--violet-100:#CFFAFE;--violet-200:#A5F3FC;--violet-300:#67E8F9;--violet-400:#22D3EE;--violet-500:#06B6D4;--violet-600:#0891B2;--violet-700:#0E7490;--violet-900:#164E63;
+--blue-50:#F0F9FF;--blue-100:#E0F2FE;--blue-200:#BAE6FD;--blue-300:#67E8F9;--blue-400:#38BDF8;--blue-500:#0EA5E9;--blue-600:#0284C7;--blue-700:#0369A1;
+--color-primary:var(--violet-500);--color-primary-hover:var(--violet-600);--color-primary-active:var(--violet-700);
+--color-primary-soft:var(--violet-50);--color-primary-soft-hover:var(--violet-100);
+--color-secondary:var(--blue-500);--color-secondary-hover:var(--blue-600);--color-secondary-soft:var(--blue-50);
+--text-link:var(--color-primary);--text-link-hover:var(--color-primary-hover);
+--border-focus:var(--color-primary);
+--focus-ring:0 0 0 3px rgba(6,182,212,.35);
+--color-selection-bg:var(--violet-100);--color-selection-text:var(--violet-700);
+--gradient-brand:linear-gradient(135deg,var(--violet-500) 0%,var(--blue-500) 100%);
+--gradient-brand-soft:linear-gradient(135deg,var(--violet-50) 0%,var(--blue-50) 100%);
+}
+
+/* ── All-Services hub theme — OneSphereee Orange ──────────────────────────
+   The hub is the one page that speaks for the whole company, so it carries
+   the brand accent itself: the violet slot becomes OneSphereee Orange
+   (#F26B21 primary / #FFA46B glow) and the blue slot a warm gold companion,
+   so --gradient-brand reads as a sunrise. The 300 step of the blue slot is
+   deliberately set to the orange glow (not gold) because .t-eyebrow-ondark
+   paints from it — eyebrows must read unmistakably orange. Individual
+   service identities are NOT themed here; each card carries its own colour
+   inline (see data/services-hub.ts). Surfaces stay dark charcoal. */
+.hub-theme{
+--violet-50:#FFF4ED;--violet-100:#FFE6D5;--violet-200:#FFC9A8;--violet-300:#FFA46B;--violet-400:#FF8438;--violet-500:#F26B21;--violet-600:#D8540F;--violet-700:#A9410C;--violet-900:#5C2206;
+--blue-50:#FFF8EC;--blue-100:#FEEDCB;--blue-200:#FBD99A;--blue-300:#FFA46B;--blue-400:#F0A73C;--blue-500:#E08A18;--blue-600:#B96E12;--blue-700:#90540E;
+--color-primary:var(--violet-500);--color-primary-hover:var(--violet-600);--color-primary-active:var(--violet-700);
+--color-primary-soft:var(--violet-50);--color-primary-soft-hover:var(--violet-100);
+--color-secondary:var(--blue-500);--color-secondary-hover:var(--blue-600);--color-secondary-soft:var(--blue-50);
+--text-link:var(--color-primary);--text-link-hover:var(--color-primary-hover);
+--border-focus:var(--color-primary);
+--focus-ring:0 0 0 3px rgba(242,107,33,.35);
+--color-selection-bg:var(--violet-100);--color-selection-text:var(--violet-700);
+--gradient-brand:linear-gradient(135deg,var(--violet-500) 0%,var(--blue-500) 100%);
+--gradient-brand-soft:linear-gradient(135deg,var(--violet-50) 0%,var(--blue-50) 100%);
+}
+
 *{box-sizing:border-box}
 html{scroll-behavior:auto}
 html.lenis,html.lenis body{height:auto}

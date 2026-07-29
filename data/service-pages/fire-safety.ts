@@ -207,7 +207,7 @@ export const fireSafetyPage: ServicePageContent = {
       { title: 'Equipment Procurement' },
       { title: 'Installation' },
       { title: 'Testing & Commissioning' },
-      { title: 'Compliance Certification' },
+      { title: 'Completion Certification' },
       { title: 'AMC & Ongoing Maintenance' },
     ],
   },
