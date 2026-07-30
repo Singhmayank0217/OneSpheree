@@ -129,6 +129,38 @@
 --gradient-brand-soft:linear-gradient(135deg,var(--violet-50) 0%,var(--blue-50) 100%);
 }
 
+/* ── About page theme — Deep Navy / Soft Blue ─────────────────────────────
+   About is the page that introduces the people, so it gets a calm, corporate
+   identity of its own: the violet slot becomes a royal navy (#2E5BC0 primary)
+   and the blue slot a soft sky blue (#2E96CE), which is a deliberately quieter
+   register than any service page and further still from the hub's orange.
+
+   Unlike the service themes, this scope also retunes its SURFACES — the dark
+   sections are deep navy (#0A1122) rather than the near-black charcoal, and the
+   light canvas is a cool off-white. That is what gives the page a distinct look
+   without touching a single component. Nothing here escapes `.about-theme`.
+
+   Orange survives as an accent only, via --accent-orange: a marker on the
+   section rules and the values index, never a surface or a button. */
+.about-theme{
+--violet-50:#EEF3FC;--violet-100:#D9E4F8;--violet-200:#B3C8F0;--violet-300:#7FA3E4;--violet-400:#4F7BD4;--violet-500:#2E5BC0;--violet-600:#24499D;--violet-700:#1B3878;--violet-900:#0F1F44;
+--blue-50:#EDF7FD;--blue-100:#D6EDFA;--blue-200:#AFDCF4;--blue-300:#7CC6EC;--blue-400:#4FAEE0;--blue-500:#2E96CE;--blue-600:#237AAB;--blue-700:#1A5C81;
+--color-primary:var(--violet-500);--color-primary-hover:var(--violet-600);--color-primary-active:var(--violet-700);
+--color-primary-soft:var(--violet-50);--color-primary-soft-hover:var(--violet-100);
+--color-secondary:var(--blue-500);--color-secondary-hover:var(--blue-600);--color-secondary-soft:var(--blue-50);
+--text-link:var(--color-primary);--text-link-hover:var(--color-primary-hover);
+--border-focus:var(--color-primary);
+--focus-ring:0 0 0 3px rgba(46,91,192,.35);
+--color-selection-bg:var(--violet-100);--color-selection-text:var(--violet-700);
+--gradient-brand:linear-gradient(135deg,var(--violet-500) 0%,var(--blue-500) 100%);
+--gradient-brand-soft:linear-gradient(135deg,var(--violet-50) 0%,var(--blue-50) 100%);
+/* surfaces — navy instead of charcoal, cool off-white instead of grey */
+--surface-dark:#0A1122;--surface-dark-elevated:#0E1830;--surface-canvas:#F7F9FC;--surface-sunken:#EBF0F7;
+--border-dark:#22304C;--text-on-dark-muted:#A6B4CC;
+/* the one place the brand orange appears on this page */
+--accent-orange:#F26B21;
+}
+
 /* ── All-Services hub theme — OneSphereee Orange ──────────────────────────
    The hub is the one page that speaks for the whole company, so it carries
    the brand accent itself: the violet slot becomes OneSphereee Orange
