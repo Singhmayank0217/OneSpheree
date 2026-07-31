@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ds/Button';
@@ -53,6 +54,14 @@ const STAGE_TINTS = [
   'radial-gradient(62% 55% at 68% 62%, color-mix(in srgb, var(--violet-500) 17%, transparent), transparent 70%)',
 ];
 
+/**
+ * Each service photo is rendered twice (desktop artifact + mobile card) but the
+ * two are never visible together. One shared `sizes` makes both resolve to the
+ * same srcset candidate, so the browser fetches each photo exactly once —
+ * lazy-loaded images inside a `display:none` branch are still requested.
+ */
+const PHOTO_SIZES = '(min-width: 1024px) 60vw, 100vw';
+
 /** Inner-shape poses (ring + panel) per scene — small recompositions inside the artifact. */
 const SHAPE_A = [
   { x: '6%', y: '-12%', scale: 1, rotation: 0 },
@@ -83,6 +92,7 @@ const SHAPE_B = [
 export function ServiceScenes() {
   const stageRef = useRef<HTMLDivElement>(null);
   const artifactRef = useRef<HTMLDivElement>(null);
+  const photoRef = useRef<HTMLDivElement>(null);
   const shapeARef = useRef<HTMLDivElement>(null);
   const shapeBRef = useRef<HTMLDivElement>(null);
   const watermarkRef = useRef<HTMLDivElement>(null);
@@ -96,6 +106,7 @@ export function ServiceScenes() {
     const scenes = gsap.utils.toArray<HTMLElement>('[data-scene]', stage);
     const tintLayers = gsap.utils.toArray<HTMLElement>('[data-stage-tint]', stage);
     const gradLayers = gsap.utils.toArray<HTMLElement>('[data-artifact-gradient]', stage);
+    const photoLayers = gsap.utils.toArray<HTMLElement>('[data-artifact-photo]', stage);
     const items = (scene: HTMLElement) => scene.querySelectorAll('[data-scene-item]');
     const headline = (scene: HTMLElement) => scene.querySelector('[data-scene-headline]');
     const mm = gsap.matchMedia();
@@ -107,6 +118,27 @@ export function ServiceScenes() {
       gsap.set(artifactRef.current, { ...ARTIFACT[0], autoAlpha: 0 });
       gsap.set(gradLayers[0], { backgroundImage: GRADIENTS[0], opacity: 1 });
       gsap.set(tintLayers[0], { backgroundImage: STAGE_TINTS[0], opacity: 1 });
+      gsap.set(photoLayers[0], { opacity: 1 });
+      gsap.set(photoLayers.slice(1), { opacity: 0 });
+
+      // The artifact morphs non-uniformly (scaleX ≠ scaleY). Photography inside
+      // it must not inherit that squash, so the photo frame carries the inverse
+      // ratio — both axes stay ≥ 1 so the frame always covers the artifact and
+      // the picture crops instead of stretching. Read off the live transform
+      // each frame; it mirrors the existing timeline rather than adding to it.
+      let lastX = 0;
+      let lastY = 0;
+      const counterScale = () => {
+        const sx = Number(gsap.getProperty(artifactRef.current, 'scaleX')) || 1;
+        const sy = Number(gsap.getProperty(artifactRef.current, 'scaleY')) || 1;
+        if (sx === lastX && sy === lastY) return;
+        lastX = sx;
+        lastY = sy;
+        const k = Math.max(sx, sy);
+        gsap.set(photoRef.current, { scaleX: k / sx, scaleY: k / sy });
+      };
+      counterScale();
+      gsap.ticker.add(counterScale);
 
       const tl = gsap.timeline({
         defaults: { ease: 'power3.out' },
@@ -148,6 +180,9 @@ export function ServiceScenes() {
           .set(grad, { backgroundImage: GRADIENTS[i] }, t)
           .to(grad, { opacity: 1, duration: 0.55 }, t)
           .to(gradOut, { opacity: 0, duration: 0.55 }, t)
+          // the service photograph cross-fades on the same beat as the gradient
+          .to(photoLayers[i], { opacity: 1, duration: 0.55 }, t)
+          .to(photoLayers[i - 1], { opacity: 0, duration: 0.55 }, t)
           .set(tint, { backgroundImage: STAGE_TINTS[i] }, t)
           .to(tint, { opacity: 1, duration: 0.6 }, t)
           .to(tintOut, { opacity: 0, duration: 0.6 }, t)
@@ -183,6 +218,8 @@ export function ServiceScenes() {
         { scaleX: 1, ease: 'none', duration: scenes.length - 1 },
         0
       );
+
+      return () => gsap.ticker.remove(counterScale);
     });
 
     mm.add('(max-width: 1023px) and (prefers-reduced-motion: no-preference)', () => {
@@ -245,6 +282,19 @@ export function ServiceScenes() {
           <div className="relative h-full w-full overflow-hidden" style={{ borderRadius: 'inherit' }}>
             <div data-artifact-gradient="" className="absolute inset-0" />
             <div data-artifact-gradient="" className="absolute inset-0 opacity-0" />
+            {/* service photography — one layer per scene, riding the artifact's
+                pose; the frame counter-scales so each photo crops, never stretches */}
+            <div ref={photoRef} className="absolute inset-0">
+              {services.map((service, i) => (
+                <div
+                  key={service.slug}
+                  data-artifact-photo=""
+                  className={`absolute inset-0 ${i === 0 ? '' : 'opacity-0'}`}
+                >
+                  <Image src={service.image} alt="" fill sizes={PHOTO_SIZES} className="object-cover" />
+                </div>
+              ))}
+            </div>
             <div
               ref={shapeARef}
               className="absolute left-1/4 top-1/4 h-1/2 w-1/2 rounded-full border border-[rgba(255,255,255,.28)]"
@@ -264,12 +314,17 @@ export function ServiceScenes() {
                   <span className="font-mono text-[var(--blue-300)]">{service.index}</span>
                   {service.name}
                 </p>
-                {/* mobile-only gradient accent keeps each scene distinct without the artifact */}
-                <span
-                  aria-hidden="true"
-                  className="mt-2 block h-[6px] w-16 rounded-full lg:hidden"
-                  style={{ backgroundImage: GRADIENTS[i] }}
-                />
+                {/* mobile-only visual — the artifact is desktop-only, so the
+                    scene carries its own photograph in the same slot */}
+                <div className="relative mt-2 aspect-[16/10] w-full overflow-hidden rounded-xl lg:hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.imageAlt}
+                    fill
+                    sizes={PHOTO_SIZES}
+                    className="object-cover"
+                  />
+                </div>
                 <div className="mt-2 overflow-hidden">
                   <h3 data-scene-headline="" className="t-h1 ondark-heading will-change-transform">
                     {service.headline}

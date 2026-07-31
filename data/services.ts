@@ -8,6 +8,9 @@ export interface Service {
   index: string; // '01'…'06'
   /** capability chips shown in the home explorer and service pages */
   capabilities: string[];
+  /** service photography, served from /public/images/home */
+  image: string;
+  imageAlt: string;
 }
 
 export const services: Service[] = [
@@ -19,6 +22,8 @@ export const services: Service[] = [
     icon: 'trendingUp',
     index: '01',
     capabilities: ['Performance media', 'SEO & content', 'Brand campaigns', 'Marketing analytics'],
+    image: '/images/home/Digital_marketing.jpg',
+    imageAlt: 'Digital marketing team reviewing campaign performance data',
   },
   {
     slug: 'fire-safety',
@@ -28,6 +33,8 @@ export const services: Service[] = [
     icon: 'shield',
     index: '02',
     capabilities: ['Safety audits', 'Detection & suppression', 'Compliance certification', 'Evacuation planning'],
+    image: '/images/home/Fire_safety.jpg',
+    imageAlt: 'Fire safety equipment installed and maintained on site',
   },
   {
     slug: 'due-diligence',
@@ -37,6 +44,8 @@ export const services: Service[] = [
     icon: 'fileCheck',
     index: '03',
     capabilities: ['Background verification', 'Compliance audits', 'Risk assessment', 'Vendor screening'],
+    image: '/images/home/Due_deligence.jpg',
+    imageAlt: 'Due diligence review of compliance and verification documents',
   },
   {
     slug: 'e-commerce',
@@ -46,6 +55,8 @@ export const services: Service[] = [
     icon: 'shoppingCart',
     index: '04',
     capabilities: ['Storefront development', 'Marketplace operations', 'Payments & checkout', 'Fulfillment integration'],
+    image: '/images/home/Ecommerce_sol.jpg',
+    imageAlt: 'Online commerce storefront and fulfilment operations',
   },
   {
     slug: 'manpower-solutions',
@@ -55,6 +66,8 @@ export const services: Service[] = [
     icon: 'users',
     index: '05',
     capabilities: ['Staffing & recruitment', 'Payroll management', 'Workforce compliance', 'On-site teams'],
+    image: '/images/home/Manpower.jpg',
+    imageAlt: 'Deployed workforce team on assignment',
   },
   {
     slug: 'sales-consulting',
@@ -64,6 +77,8 @@ export const services: Service[] = [
     icon: 'target',
     index: '06',
     capabilities: ['Sales strategy', 'Market analysis', 'Growth roadmaps', 'Business consulting'],
+    image: '/images/home/sales.jpg',
+    imageAlt: 'Sales and business consulting session in progress',
   },
 ];
 

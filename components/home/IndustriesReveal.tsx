@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Container } from '@/components/layout/Container';
@@ -23,6 +24,18 @@ const TINT_BG = {
 export function IndustriesReveal() {
   const listRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
+  const [showPhotos, setShowPhotos] = useState(false);
+
+  // The composition band only exists from lg up. Browsers still fetch lazy
+  // images inside a `display:none` branch, so the photography is mounted only
+  // once the viewport actually qualifies — phones never pay for it.
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const sync = () => setShowPhotos(mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
 
   // masked row reveal on scroll entry
   useEffect(() => {
@@ -53,9 +66,14 @@ export function IndustriesReveal() {
     const panels = gsap.utils.toArray<HTMLElement>('[data-industry-panel]', list);
     panels.forEach((panel, i) => {
       const open = i === active;
+      const photo = panel.querySelector<HTMLElement>('[data-industry-photo]');
       if (reduced) {
         panel.style.height = open ? 'auto' : '0px';
         panel.style.opacity = open ? '1' : '0';
+        if (photo) {
+          photo.style.opacity = open ? '1' : '0';
+          photo.style.transform = 'none';
+        }
         return;
       }
       gsap.to(panel, {
@@ -65,8 +83,20 @@ export function IndustriesReveal() {
         ease: EASE.out,
         overwrite: 'auto',
       });
+      // the photograph rides the same beat: the outgoing one fades and eases
+      // back out of its frame while the incoming one settles in — a crossfade
+      // between two rows rather than a hard swap
+      if (photo) {
+        gsap.to(photo, {
+          opacity: open ? 1 : 0,
+          scale: open ? 1 : 1.06,
+          duration: DURATION.section / 2,
+          ease: EASE.out,
+          overwrite: 'auto',
+        });
+      }
     });
-  }, [active]);
+  }, [active, showPhotos]);
 
   return (
     <section aria-label="Industries">
@@ -124,8 +154,24 @@ export function IndustriesReveal() {
                     className="relative hidden h-20 overflow-hidden rounded-lg lg:block"
                     style={{ backgroundImage: TINT_BG[industry.tint] }}
                   >
-                    <span className="absolute right-4 top-1/2 h-10 w-10 -translate-y-1/2 rounded-full border border-[rgba(255,255,255,.4)]" />
-                    <span className="absolute left-5 top-1/2 h-px w-1/3 -translate-y-1/2 bg-[rgba(255,255,255,.35)]" />
+                    {/* the sector photograph; the brand tint stays underneath
+                        as the surface it loads onto */}
+                    {showPhotos && (
+                      <div
+                        data-industry-photo=""
+                        className="absolute inset-0 opacity-0"
+                        style={{ transform: 'scale(1.06)' }}
+                      >
+                        <Image
+                          src={industry.image}
+                          alt={industry.imageAlt}
+                          fill
+                          sizes="280px"
+                          quality={90}
+                          className="object-cover"
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
