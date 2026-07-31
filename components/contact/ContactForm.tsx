@@ -6,7 +6,13 @@ import { Icon } from '@/components/ds/Icon';
 import { ContactModal } from './ContactModal';
 import { submitEnquiry } from '@/app/contact/actions';
 import { BUSINESS_TYPES, SERVICE_OPTIONS } from '@/data/contact';
-import { EMPTY_VALUES, FIELD_LABELS, REQUIRED_FIELDS, validateContact, validateField } from '@/lib/contact-validation';
+import {
+  EMPTY_VALUES,
+  FIELD_LABELS,
+  REQUIRED_FIELDS,
+  validateContact,
+  validateField,
+} from '@/lib/contact-validation';
 import { CONTACT_FIELDS, type ContactErrors, type ContactField, type ContactValues } from '@/types/contact';
 import type { ContactExperienceContent } from '@/types/contact';
 import { cn } from '@/lib/utils';
@@ -46,7 +52,13 @@ interface FieldSpec {
 
 const FIELDS: FieldSpec[] = [
   { name: 'fullName', control: 'input', type: 'text', placeholder: 'Priya Sharma', autoComplete: 'name' },
-  { name: 'companyName', control: 'input', type: 'text', placeholder: 'Acme Industries Pvt. Ltd.', autoComplete: 'organization' },
+  {
+    name: 'companyName',
+    control: 'input',
+    type: 'text',
+    placeholder: 'Acme Industries Pvt. Ltd.',
+    autoComplete: 'organization',
+  },
   { name: 'email', control: 'input', type: 'email', placeholder: 'you@company.com', autoComplete: 'email' },
   { name: 'phone', control: 'input', type: 'tel', placeholder: '+91 98300 00000', autoComplete: 'tel' },
   { name: 'businessType', control: 'select', placeholder: 'Select business type', options: BUSINESS_TYPES },
@@ -54,7 +66,8 @@ const FIELDS: FieldSpec[] = [
   {
     name: 'message',
     control: 'textarea',
-    placeholder: 'Where is your business today, what do you need, and is there a date you are working towards?',
+    placeholder:
+      'Where is your business today, what do you need, and is there a date you are working towards?',
     wide: true,
   },
 ];
@@ -65,6 +78,18 @@ const SUCCESS_COPY = [
 ];
 
 const ERROR_COPY = ["We couldn't send your enquiry at the moment.", 'Please try again in a few moments.'];
+
+/**
+ * Colours for the native `<option>` list. The OS paints this popup outside the
+ * page's own stacking context, so it cannot inherit the panel's glass surface —
+ * it needs literal values, and it needs them on every option. Both are DS
+ * tokens: the elevated dark surface and on-dark text, which clears AA contrast
+ * comfortably (≈14:1).
+ */
+const OPTION_STYLE = {
+  backgroundColor: 'var(--surface-dark-elevated)',
+  color: 'var(--text-on-dark)',
+} as const;
 
 /** Field shell — owns the glass surface, the focus lighting and the error state. */
 function Field({
@@ -90,7 +115,10 @@ function Field({
 
   return (
     <div data-form-field="" className={cn('flex flex-col gap-2', spec.wide && 'sm:col-span-2')}>
-      <label htmlFor={id} className="flex items-center gap-1 text-[length:var(--text-label-size)] font-semibold text-ondark-muted">
+      <label
+        htmlFor={id}
+        className="flex items-center gap-1 text-[length:var(--text-label-size)] font-semibold text-ondark-muted"
+      >
         {FIELD_LABELS[spec.name]}
         {required && (
           <span aria-hidden="true" className="text-[var(--violet-300)]">
@@ -159,18 +187,25 @@ function Field({
               aria-describedby={invalid ? errorId : undefined}
               onChange={(e) => onChange(e.target.value)}
               onBlur={onBlur}
-              // colorScheme makes the native option list render dark, so the
-              // popup matches the panel instead of flashing white
-              style={{ colorScheme: 'dark' }}
+              // The native popup is painted by the OS, not by this panel, so it
+              // has to be given real colours of its own: `colorScheme` puts the
+              // list into dark mode, and each option carries an explicit
+              // background and text colour because a transparent control leaves
+              // the popup inheriting whatever the platform picks — which is how
+              // the list ended up near-invisible. The closed control keeps a
+              // solid surface for the same reason.
+              style={{ colorScheme: 'dark', backgroundColor: 'var(--surface-dark-elevated)' }}
               className={cn(
                 controlBase,
                 'cursor-pointer appearance-none pr-11',
-                !value && 'text-[rgba(167,173,187,.55)]'
+                !value && 'text-[rgba(167,173,187,.72)]'
               )}
             >
-              <option value="">{spec.placeholder}</option>
+              <option value="" style={OPTION_STYLE}>
+                {spec.placeholder}
+              </option>
               {spec.options?.map((option) => (
-                <option key={option} value={option}>
+                <option key={option} value={option} style={OPTION_STYLE}>
                   {option}
                 </option>
               ))}
@@ -353,13 +388,16 @@ export function ContactForm({ content }: { content: ContactExperienceContent['fo
             ))}
           </div>
 
-          <div data-form-field="" className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div
+            data-form-field=""
+            className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+          >
             <button
               ref={submitRef}
               type="submit"
               disabled={sending}
               className={cn(
-                'inline-flex items-center justify-center gap-2 rounded-md border border-transparent px-[26px] py-[14px] font-sans text-[1rem] font-semibold tracking-[.01em] text-white transition-[background-color,transform,box-shadow,opacity] duration-[var(--duration-fast)]',
+                'inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-transparent px-[26px] py-[14px] font-sans text-[1rem] font-semibold tracking-[.01em] text-white transition-[background-color,transform,box-shadow,opacity] duration-[var(--duration-fast)]',
                 sending
                   ? 'cursor-wait bg-primary-hover opacity-80'
                   : 'cursor-pointer bg-primary hover:-translate-y-px hover:bg-primary-hover hover:shadow-[0_10px_30px_-10px_color-mix(in_srgb,var(--violet-500)_85%,transparent)] active:translate-y-0 active:scale-[.98]'

@@ -43,7 +43,11 @@ export function ContactHero({ hero }: { hero: ContactHeroContent }) {
         // the uncovering — the section's signature gesture
         .to('[data-hero-line]', { yPercent: 0, duration: 1.15, ease: 'expo.out', stagger: 0.085 }, 0.3)
         .to('[data-hero-desc]', { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, 0.95)
-        .to('[data-hero-action]', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.09 }, 1.15)
+        .to(
+          '[data-hero-action]',
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.09 },
+          1.15
+        )
         .to('[data-hero-cue]', { opacity: 1, duration: 0.8, ease: 'sine.out' }, 1.5);
     }, el);
 
@@ -54,7 +58,7 @@ export function ContactHero({ hero }: { hero: ContactHeroContent }) {
     <section
       ref={rootRef}
       aria-label={hero.eyebrow}
-      className="relative flex min-h-[92svh] items-center overflow-hidden bg-dark text-ondark"
+      className="relative flex min-h-svh items-center overflow-hidden bg-dark text-ondark"
     >
       {/* the field fills the frame, weighted to the right where the receiver sits */}
       <ContactSignalField className="pointer-events-none absolute inset-0 h-full w-full opacity-90" />
@@ -69,7 +73,10 @@ export function ContactHero({ hero }: { hero: ContactHeroContent }) {
         }}
       />
 
-      <Container className="relative z-10 pb-[104px] pt-[148px] lg:pb-[128px] lg:pt-[168px]">
+      {/* Top padding clears the fixed navbar and nothing more — the section is
+          `items-center` on a full viewport, so any extra here reads as a gap
+          between the nav and the statement. Matches the home hero exactly. */}
+      <Container className="relative z-10 pb-12 pt-[120px]">
         <div className="max-w-[760px]">
           <div className="flex items-center gap-3">
             <span

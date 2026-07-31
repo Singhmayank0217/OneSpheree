@@ -57,7 +57,7 @@ function SupportCard({ category, index, wide }: { category: SupportCategory; ind
       onFocus={() => setActive(true)}
       style={{ '--accent': category.accent } as CSSProperties}
       className={`group relative flex flex-col overflow-hidden rounded-xl border border-line bg-canvas p-6 transition-[transform,border-color,background-color,box-shadow] duration-[var(--duration-slow)] ease-[var(--ease-out)] hover:-translate-y-[6px] hover:border-[color-mix(in_srgb,var(--accent)_55%,transparent)] hover:bg-card hover:shadow-md sm:p-7 ${
-        wide ? 'lg:col-span-3 lg:flex-row lg:items-center lg:gap-10' : ''
+        wide ? 'md:col-span-2 lg:col-span-3 lg:flex-row lg:items-center lg:gap-10' : ''
       }`}
     >
       {/* the queue's own light, held back until the card is active */}

@@ -53,9 +53,10 @@ export interface ContactLocationContent {
   eyebrow: string;
   headline: string;
   description: string;
-  /** the illustrated locale — district labels drawn on the abstract map */
-  districts: string[];
   address: string[];
+  /** Google Maps embed src for the office pin (keyless `output=embed` form) */
+  mapEmbedUrl: string;
+  /** directions deep link, opened in a new tab by the button */
   mapsUrl: string;
   mapsLabel: string;
 }

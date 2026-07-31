@@ -27,9 +27,21 @@ export const contactPage: ContactPageContent = {
       'Tell us the shape of the problem. We will route your enquiry to the division that owns it, and come back with people who have solved it before, not a generic proposal.',
     ],
     assurances: [
-      { icon: 'clock', label: 'One business day', detail: 'Every enquiry is acknowledged within 24 working hours.' },
-      { icon: 'users', label: 'Specialists, not a queue', detail: 'You speak to the practice lead for your requirement.' },
-      { icon: 'shield', label: 'Handled confidentially', detail: 'Commercial details stay between your team and ours.' },
+      {
+        icon: 'clock',
+        label: 'One business day',
+        detail: 'Every enquiry is acknowledged within 24 working hours.',
+      },
+      {
+        icon: 'users',
+        label: 'Specialists, not a queue',
+        detail: 'You speak to the practice lead for your requirement.',
+      },
+      {
+        icon: 'shield',
+        label: 'Handled confidentially',
+        detail: 'Commercial details stay between your team and ours.',
+      },
     ],
     form: {
       eyebrow: 'Enquiry Form',
@@ -51,7 +63,11 @@ export const contactPage: ContactPageContent = {
         icon: 'briefcase',
         kind: 'Head Office',
         title: 'OneSpheree',
-        lines: [{ text: 'Salt Lake Sector V' }, { text: 'Kolkata, West Bengal 700091' }, { text: 'India' }],
+        lines: [
+          { text: '11, Girish Ghosh Road' },
+          { text: 'Belurmath, Howrah' },
+          { text: 'West Bengal 711202, India' },
+        ],
         note: 'Visits by appointment — tell us a time and we will confirm the same day.',
       },
       {
@@ -59,21 +75,15 @@ export const contactPage: ContactPageContent = {
         icon: 'mail',
         kind: 'Email',
         title: 'Write to us',
-        lines: [
-          { text: 'Info@Onespheree.com', href: 'mailto:Info@Onespheree.com' },
-          { text: 'Careers@Onespheree.com', href: 'mailto:Careers@Onespheree.com' },
-        ],
-        note: 'General enquiries and new business both arrive at the first address.',
+        lines: [{ text: 'Info@Onespheree.com', href: 'mailto:Info@Onespheree.com' }],
+        note: 'General enquiries and new business both arrive at this address.',
       },
       {
         id: 'phone',
         icon: 'phone',
         kind: 'Phone',
         title: 'Talk to us',
-        lines: [
-          { text: '+91 33 4602 8100', href: 'tel:+913346028100' },
-          { text: '+91 98300 22400', href: 'tel:+919830022400' },
-        ],
+        lines: [{ text: '+91-7980566366', href: 'tel:+917980566366' }],
         note: 'Reception routes you to the right practice — no switchboard maze.',
       },
       {
@@ -81,11 +91,7 @@ export const contactPage: ContactPageContent = {
         icon: 'clock',
         kind: 'Business Hours',
         title: 'When we are open',
-        lines: [
-          { text: 'Monday – Friday · 9:30 to 18:30 IST' },
-          { text: 'Saturday · 10:00 to 14:00 IST' },
-          { text: 'Sunday · Closed' },
-        ],
+        lines: [{ text: 'Monday – Saturday' }, { text: '10:00 AM – 7:00 PM' }, { text: 'Sunday · Closed' }],
         note: 'Fire & Safety maintenance contracts are supported outside these hours.',
       },
       {
@@ -94,24 +100,28 @@ export const contactPage: ContactPageContent = {
         kind: 'Location & Coverage',
         title: 'Delivering across India',
         lines: [
-          { text: 'Kolkata · Delhi · Mumbai' },
-          { text: 'Hyderabad · Bangalore' },
+          { text: 'Howrah · Kolkata · Delhi' },
+          { text: 'Mumbai · Hyderabad · Bangalore' },
           { text: 'Pan-India project teams' },
         ],
-        note: 'International engagements are run remotely from the Kolkata office.',
+        note: 'International engagements are run remotely from the Howrah office.',
       },
     ],
   },
 
   location: {
     eyebrow: 'Find the Office',
-    headline: 'Salt Lake Sector V, Kolkata.',
+    headline: 'Belurmath, Howrah.',
     description:
-      "The head office sits in Kolkata's technology district — ten minutes from Sector V's transit spine and a short drive from the bypass. Park on site; reception is on the ground floor.",
-    districts: ['Sector V', 'Technopolis', 'Bypass', 'Transit Hub'],
-    address: ['OneSpheree', 'Salt Lake Sector V', 'Kolkata, West Bengal 700091', 'India'],
-    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Salt+Lake+Sector+V%2C+Kolkata%2C+West+Bengal+700091',
-    mapsLabel: 'View on Google Maps',
+      'The head office sits on Girish Ghosh Road in Belurmath, a short drive from the Howrah riverfront and well connected to central Kolkata. Reception is on the ground floor.',
+    address: ['OneSpheree', '11, Girish Ghosh Road', 'Belurmath, Howrah', 'West Bengal 711202, India'],
+    /** the interactive embed (no API key required) */
+    mapEmbedUrl:
+      'https://www.google.com/maps?q=11%2C%20Girish%20Ghosh%20Road%2C%20Belurmath%2C%20Howrah%2C%20West%20Bengal%20711202%2C%20India&output=embed',
+    /** opens turn-by-turn directions to the office in a new tab */
+    mapsUrl:
+      'https://www.google.com/maps/dir/?api=1&destination=11%2C+Girish+Ghosh+Road%2C+Belurmath%2C+Howrah%2C+West+Bengal+711202%2C+India',
+    mapsLabel: 'Get Directions',
   },
 
   support: {
@@ -134,7 +144,8 @@ export const contactPage: ContactPageContent = {
         id: 'digital-marketing',
         motif: 'marketing',
         name: 'Digital Marketing',
-        description: 'Performance media, SEO, content and brand — measured against pipeline, not impressions.',
+        description:
+          'Performance media, SEO, content and brand — measured against pipeline, not impressions.',
         email: 'Info@Onespheree.com',
         href: '/services/digital-marketing',
         accent: '#8B5CF6',
@@ -152,7 +163,8 @@ export const contactPage: ContactPageContent = {
         id: 'fire-safety',
         motif: 'safety',
         name: 'Fire & Safety',
-        description: 'Detection and protection systems, installation, audits, training and annual maintenance.',
+        description:
+          'Detection and protection systems, installation, audits, training and annual maintenance.',
         email: 'Info@Onespheree.com',
         href: '/services/fire-safety',
         accent: '#C9392B',
@@ -161,7 +173,8 @@ export const contactPage: ContactPageContent = {
         id: 'manpower',
         motif: 'manpower',
         name: 'Manpower Solutions',
-        description: 'Permanent and contract staffing, executive search, RPO, payroll and workforce management.',
+        description:
+          'Permanent and contract staffing, executive search, RPO, payroll and workforce management.',
         email: 'Info@Onespheree.com',
         href: '/services/manpower-solutions',
         accent: '#2563EB',
@@ -179,7 +192,8 @@ export const contactPage: ContactPageContent = {
         id: 'general',
         motif: 'general',
         name: 'General Enquiries',
-        description: 'Partnerships, careers, press, invoicing — anything that does not belong to one division.',
+        description:
+          'Partnerships, careers, press, invoicing — anything that does not belong to one division.',
         email: 'Info@Onespheree.com',
         accent: '#F26B21',
       },
@@ -221,8 +235,7 @@ export const contactPage: ContactPageContent = {
   finalCta: {
     eyebrow: 'The Next Step',
     headline: ['Your Next Business', 'Success Story', 'Starts Here'],
-    description:
-      "Let's discuss your goals and build solutions that help your business grow with confidence.",
+    description: "Let's discuss your goals and build solutions that help your business grow with confidence.",
     primaryCta: { label: 'Contact Our Team', href: '#enquiry' },
     secondaryCta: { label: 'Book a Meeting', href: 'mailto:Info@Onespheree.com?subject=Meeting%20request' },
     signature: 'One Vision. Endless Solutions.',
@@ -234,22 +247,23 @@ export const contactPage: ContactPageContent = {
 /** Business type is optional context, so the list stays short and inclusive. */
 export const BUSINESS_TYPES = [
   'Startup',
-  'Small or Medium Business',
-  'Large Enterprise',
-  'Government or PSU',
-  'Non-Profit or NGO',
-  'Individual or Sole Proprietor',
+  'Small Business',
+  'Medium Business',
+  'Enterprise',
+  'Government',
+  'NGO',
+  'Individual',
   'Other',
 ] as const;
 
 /** Required — this is what routes the enquiry to a practice. */
 export const SERVICE_OPTIONS = [
-  'Sales & Consulting',
   'Digital Marketing',
   'Due Diligence',
   'Fire & Safety',
-  'Manpower Solutions',
   'Reselling & E-Commerce',
-  'Multiple Services',
-  'General Enquiry',
+  'Manpower Solutions',
+  'Sales & Consulting',
+  'General Business Consulting',
+  'Other',
 ] as const;

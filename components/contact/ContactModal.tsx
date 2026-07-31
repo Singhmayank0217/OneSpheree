@@ -150,6 +150,12 @@ export function ContactModal({
   if (!render) return null;
 
   const success = variant === 'success';
+  // Both outcomes are mounted by the form, and during a swap (an error dialog
+  // still playing its exit while a success dialog opens) they are briefly in
+  // the DOM together — so the ids have to be per-variant or `aria-labelledby`
+  // would resolve to the wrong dialog's heading.
+  const titleId = `contact-modal-${variant}-title`;
+  const bodyId = `contact-modal-${variant}-body`;
 
   return (
     <div
@@ -165,8 +171,8 @@ export function ContactModal({
         ref={panelRef}
         role="dialog"
         aria-modal="true"
-        aria-labelledby="contact-modal-title"
-        aria-describedby="contact-modal-body"
+        aria-labelledby={titleId}
+        aria-describedby={bodyId}
         className="relative w-full max-w-[520px] overflow-hidden rounded-xl border border-line-dark bg-dark-elevated p-8 text-ondark shadow-dark-lg sm:p-10"
       >
         {/* the state's own light, top-lit */}
@@ -217,11 +223,11 @@ export function ContactModal({
             <Icon name={success ? 'check' : 'alertTriangle'} size={26} />
           </span>
 
-          <h2 data-modal-item="" id="contact-modal-title" className="t-h2 ondark-heading mt-6">
+          <h2 data-modal-item="" id={titleId} className="t-h2 ondark-heading mt-6">
             {title}
           </h2>
 
-          <div data-modal-item="" id="contact-modal-body" className="mt-4 flex flex-col gap-3">
+          <div data-modal-item="" id={bodyId} className="mt-4 flex flex-col gap-3">
             {message.map((paragraph) => (
               <p key={paragraph.slice(0, 24)} className="text-ondark-muted">
                 {paragraph}

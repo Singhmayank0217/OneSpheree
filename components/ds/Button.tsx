@@ -32,6 +32,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   iconRight?: string;
   href?: string;
   fullWidth?: boolean;
+  /** opens `href` in a new tab (external destinations — maps, docs, socials) */
+  newTab?: boolean;
   children: ReactNode;
 }
 
@@ -42,6 +44,7 @@ export function Button({
   iconRight,
   href,
   fullWidth,
+  newTab,
   className,
   children,
   ...rest
@@ -57,7 +60,7 @@ export function Button({
   );
   if (href) {
     return (
-      <Link href={href} className={cls}>
+      <Link href={href} className={cls} {...(newTab && { target: '_blank', rel: 'noopener noreferrer' })}>
         {content}
       </Link>
     );

@@ -106,6 +106,16 @@ function buildText(values: ContactValues, timestamp: string) {
  * failed — both are reported to the visitor as "try again", never as detail.
  */
 export async function deliverEnquiry(values: ContactValues): Promise<DeliveryOutcome> {
+  // Local development without burning Resend quota (or without a key at all):
+  // CONTACT_DRY_RUN=1 logs the enquiry to the server console and reports
+  // success, so the whole submit → loading → confirmation flow can be worked on
+  // offline. Ignored unless NODE_ENV is development, so it can never silently
+  // swallow a real enquiry in production.
+  if (process.env.CONTACT_DRY_RUN === '1' && process.env.NODE_ENV === 'development') {
+    console.info(`[contact] DRY RUN — enquiry not sent:\n${buildText(values, submittedAt())}`);
+    return { ok: true };
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     return { ok: false, reason: 'config', detail: 'RESEND_API_KEY is not set' };

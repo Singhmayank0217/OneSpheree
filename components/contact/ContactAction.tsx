@@ -23,6 +23,7 @@ export function ContactAction({
   icon,
   className,
   offset = -72,
+  newTab,
 }: {
   cta: ContactLink;
   variant?: ButtonVariant;
@@ -32,6 +33,8 @@ export function ContactAction({
   className?: string;
   /** scroll offset for in-page jumps, so the sticky navbar never covers the target */
   offset?: number;
+  /** opens the destination in a new tab — for external links like Google Maps */
+  newTab?: boolean;
 }) {
   const lenis = useLenis();
   const isJump = cta.href.startsWith('#');
@@ -41,7 +44,14 @@ export function ContactAction({
 
   if (!isJump) {
     return (
-      <Button href={cta.href} variant={variant} size={size} iconRight={icon ?? inferred} className={className}>
+      <Button
+        href={cta.href}
+        variant={variant}
+        size={size}
+        iconRight={icon ?? inferred}
+        className={className}
+        newTab={newTab}
+      >
         {cta.label}
       </Button>
     );

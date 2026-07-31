@@ -112,14 +112,29 @@ export function ContactFaq({
             <p className="mt-4 max-w-[36ch] text-muted">{intro}</p>
           </div>
 
-          <div ref={listRef} className="relative pl-8 sm:pl-11">
+          {/* The rail geometry lives in two custom properties so the spine and
+              the nodes can never drift apart: `--rail` is the spine's centre
+              measured from this element's border box, `--pad` the gutter the
+              questions are indented by. The spine positions at `--rail`; each
+              node positions at `--rail - --pad` (it sits inside a row, whose
+              box starts after the padding) and is centred on that line with a
+              half-width pull. Change either value and both follow. */}
+          <div
+            ref={listRef}
+            className="relative pl-[var(--pad)] [--pad:34px] [--rail:8px] sm:[--pad:48px] sm:[--rail:12px]"
+          >
             {/* the spine — empty until the scroll draws it */}
-            <span aria-hidden="true" className="absolute bottom-0 left-[7px] top-0 w-px bg-line sm:left-[11px]" />
+            <span
+              aria-hidden="true"
+              className="absolute bottom-0 top-0 w-px bg-line"
+              style={{ left: 'calc(var(--rail) - 0.5px)' }}
+            />
             <span
               data-faq-spine=""
               aria-hidden="true"
-              className="absolute bottom-0 left-[7px] top-0 w-px sm:left-[11px]"
+              className="absolute bottom-0 top-0 w-px"
               style={{
+                left: 'calc(var(--rail) - 0.5px)',
                 background:
                   'linear-gradient(to bottom, var(--color-primary), color-mix(in srgb, var(--color-primary) 35%, transparent))',
               }}
@@ -128,53 +143,65 @@ export function ContactFaq({
             {entries.map((entry, i) => {
               const isOpen = i === open;
               return (
-                <div key={entry.q} data-faq-row="" className="relative border-b border-line">
-                  {/* the node this question sits on */}
+                <div key={entry.q} className="relative border-b border-line">
+                  {/* The node this question sits on. It is a sibling of the
+                      sliding content, not a child of it — the entrance slides
+                      the text in from the left, and a node inside that would
+                      travel off the spine on the way in. Its vertical anchor is
+                      the button's own padding token plus half the gap between
+                      the question's line box and the node, so it centres on the
+                      question at every breakpoint. */}
                   <span
                     aria-hidden="true"
-                    className={`absolute -left-8 top-[26px] flex h-[15px] w-[15px] items-center justify-center rounded-full border transition-[background-color,border-color,box-shadow] duration-[var(--duration-slow)] ease-[var(--ease-out)] sm:-left-11 ${
+                    style={{
+                      left: 'calc(var(--rail) - var(--pad))',
+                      top: 'calc(var(--space-5) + 7px)',
+                    }}
+                    className={`absolute h-[15px] w-[15px] -translate-x-1/2 rounded-full border transition-[background-color,border-color,box-shadow] duration-[var(--duration-slow)] ease-[var(--ease-out)] ${
                       isOpen
                         ? 'border-primary bg-primary shadow-[0_0_0_5px_color-mix(in_srgb,var(--color-primary)_16%,transparent)]'
                         : 'border-line-strong bg-canvas'
                     }`}
                   />
 
-                  <h3>
-                    <button
-                      type="button"
-                      onClick={() => setOpen(isOpen ? -1 : i)}
-                      aria-expanded={isOpen}
-                      aria-controls={`contact-faq-${i}`}
-                      className="flex w-full items-start justify-between gap-4 py-5 text-left"
-                    >
-                      <span
-                        className={`t-h4 transition-colors duration-[var(--duration-slow)] ${
-                          isOpen ? 'text-primary' : 'text-heading'
-                        }`}
+                  <div data-faq-row="">
+                    <h3>
+                      <button
+                        type="button"
+                        onClick={() => setOpen(isOpen ? -1 : i)}
+                        aria-expanded={isOpen}
+                        aria-controls={`contact-faq-${i}`}
+                        className="flex w-full items-start justify-between gap-4 py-5 text-left"
                       >
-                        {entry.q}
-                      </span>
-                      <span
-                        aria-hidden="true"
-                        className={`mt-[3px] flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-[transform,border-color,color,background-color] duration-[var(--duration-slow)] ease-[var(--ease-out)] ${
-                          isOpen
-                            ? 'rotate-180 border-primary bg-primary-soft text-primary'
-                            : 'border-line text-muted'
-                        }`}
-                      >
-                        <Icon name="chevronDown" size={16} />
-                      </span>
-                    </button>
-                  </h3>
+                        <span
+                          className={`t-h4 transition-colors duration-[var(--duration-slow)] ${
+                            isOpen ? 'text-primary' : 'text-heading'
+                          }`}
+                        >
+                          {entry.q}
+                        </span>
+                        <span
+                          aria-hidden="true"
+                          className={`mt-[3px] flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-[transform,border-color,color,background-color] duration-[var(--duration-slow)] ease-[var(--ease-out)] ${
+                            isOpen
+                              ? 'rotate-180 border-primary bg-primary-soft text-primary'
+                              : 'border-line text-muted'
+                          }`}
+                        >
+                          <Icon name="chevronDown" size={16} />
+                        </span>
+                      </button>
+                    </h3>
 
-                  <div
-                    id={`contact-faq-${i}`}
-                    data-faq-panel=""
-                    role="region"
-                    aria-hidden={!isOpen}
-                    className="h-0 overflow-hidden opacity-0"
-                  >
-                    <p className="max-w-[64ch] pb-6 text-muted">{entry.a}</p>
+                    <div
+                      id={`contact-faq-${i}`}
+                      data-faq-panel=""
+                      role="region"
+                      aria-hidden={!isOpen}
+                      className="h-0 overflow-hidden opacity-0"
+                    >
+                      <p className="max-w-[64ch] pb-6 text-muted">{entry.a}</p>
+                    </div>
                   </div>
                 </div>
               );
