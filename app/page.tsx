@@ -1,4 +1,4 @@
-import { FableLoader } from '@/components/loader/FableLoader';
+import { Loader } from '@/components/loader/Loader';
 import { Hero } from '@/components/home/Hero';
 import { ServiceScenes } from '@/components/home/ServiceScenes';
 import { AboutStatement } from '@/components/home/AboutStatement';
@@ -31,7 +31,7 @@ export const metadata = buildMetadata({
 export default function HomePage() {
   return (
     <>
-      <FableLoader />
+      <Loader />
       <Hero />
       <ServiceScenes />
       <AboutStatement />

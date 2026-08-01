@@ -226,6 +226,47 @@ a:hover{color:var(--text-link-hover)}
 
 /* Global-presence node pulse */
 @keyframes node-pulse{0%{transform:scale(.6);opacity:.8}80%{transform:scale(2.4);opacity:0}100%{transform:scale(2.4);opacity:0}}
+
+/* ── Digital Assembly loader (components/loader/Loader.tsx) ───────────────
+   Everything the opening frame needs lives here, in the stylesheet, so the
+   backdrop, vignette and beams are painted and moving before a single line of
+   the loader's JavaScript has run. GSAP only takes over the lattice, the
+   fragment assembly, the sheen and the statement.
+   Both skip paths are CSS too: reduced motion never sees the veil, and a
+   repeat visit in the same session is flagged on <html> by a parser-blocking
+   script — neither can flash, because neither is ever composited. */
+.os-loader{position:fixed;inset:0;z-index:600;overflow:hidden;display:grid;place-items:center;will-change:opacity}
+.os-loader__vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(78% 64% at 50% 46%,transparent 52%,rgba(0,0,0,.55) 100%)}
+.os-loader__stage{position:relative;display:flex;flex-direction:column;align-items:center}
+
+/* beams — two soft brand-lit bars raking across the frame, gradient-only so
+   nothing pays for a filter */
+@keyframes os-beam{0%{transform:translate3d(-135%,0,0) rotate(var(--os-beam-rot));opacity:0}
+22%{opacity:1}70%{opacity:.85}100%{transform:translate3d(135%,0,0) rotate(var(--os-beam-rot));opacity:0}}
+.os-beam{position:absolute;left:0;top:-32%;width:62%;height:164%;opacity:0;pointer-events:none;will-change:transform,opacity;animation:os-beam 1.15s cubic-bezier(.22,.61,.36,1) both}
+.os-beam--violet{--os-beam-rot:-16deg;background:linear-gradient(90deg,transparent 0%,rgba(91,61,240,.24) 44%,rgba(137,112,244,.46) 52%,rgba(91,61,240,.12) 62%,transparent 100%)}
+.os-beam--blue{--os-beam-rot:13deg;background:linear-gradient(90deg,transparent 0%,rgba(30,155,224,.18) 44%,rgba(77,179,232,.4) 52%,rgba(30,155,224,.1) 62%,transparent 100%);animation-duration:1.3s;animation-delay:.18s}
+
+/* the mark: lattice behind, assembling fragments over it, sheen on top */
+.os-mark{position:relative;width:clamp(196px,31vw,340px)}
+.os-mark__lattice{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.os-mark__lattice circle{opacity:0;transform:scale(0);transform-box:fill-box;transform-origin:center}
+.os-mark__frags{position:absolute;inset:0}
+.os-mark__frags>span{position:absolute;inset:0;opacity:0;background-repeat:no-repeat;background-size:100% 100%;will-change:transform,opacity}
+.os-mark__sheenmask{position:absolute;inset:0;overflow:hidden;pointer-events:none;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.os-mark__sheen{position:absolute;left:0;top:-8%;width:100%;height:116%;opacity:0;will-change:transform;
+background:linear-gradient(102deg,transparent 41%,rgba(214,235,255,.9) 50%,transparent 59%)}
+
+/* the statement */
+.os-tag{display:flex;flex-direction:column;align-items:center;margin-top:clamp(20px,3.4vh,38px)}
+.os-tag__rule{display:block;width:clamp(88px,13vw,148px);height:1px;margin-bottom:clamp(12px,1.8vh,20px);transform:scaleX(0);background:linear-gradient(90deg,transparent,rgba(167,196,255,.8),transparent)}
+.os-tag__mask{display:block;overflow:hidden;padding-bottom:.16em;margin-bottom:-.16em}
+.os-tag__line{display:block;opacity:0;white-space:nowrap;font-family:var(--font-display);font-weight:600;text-transform:uppercase;
+font-size:clamp(.7rem,1.45vw,.94rem);letter-spacing:.34em;text-indent:.34em;line-height:1.75;color:rgba(228,238,255,.94)}
+.os-tag__mask:last-child .os-tag__line{color:rgba(163,190,238,.78)}
+
+html.os-loader-skip .os-loader{display:none}
+@media (prefers-reduced-motion:reduce){.os-loader{display:none}}
 .node-pulse{transform-origin:center;transform-box:fill-box;animation:node-pulse 3.2s var(--ease-out) infinite}
 @media (prefers-reduced-motion:reduce){.node-pulse{animation:none;opacity:0}}
 
