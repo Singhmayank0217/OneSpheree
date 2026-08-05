@@ -12,7 +12,7 @@ export function ProjectGallery({ project }: { project: GalleryProject }) {
 
   return (
     <section aria-label="Project gallery" className="relative">
-      <Container className="pb-section-sm">
+      <Container className="py-section-sm">
         <Reveal>
           <p className="t-eyebrow">Gallery</p>
         </Reveal>

@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ProjectHero } from '@/components/gallery/ProjectHero';
-import { ProjectStory } from '@/components/gallery/ProjectStory';
 import { ProjectGallery } from '@/components/gallery/ProjectGallery';
 import { RelatedProjects } from '@/components/gallery/RelatedProjects';
 import { NextProject } from '@/components/gallery/NextProject';
@@ -36,7 +35,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <ProjectHero project={project} />
-      <ProjectStory project={project} />
       <ProjectGallery project={project} />
       <RelatedProjects project={project} />
       <NextProject project={project} />

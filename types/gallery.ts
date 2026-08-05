@@ -45,11 +45,3 @@ export interface GalleryCategory {
   label: string;
   kind: 'all' | 'service' | 'industry';
 }
-
-/** Challenge → Approach → Execution → Results, shown on the detail page. */
-export interface ProjectNarrative {
-  challenge: string;
-  approach: string;
-  execution: string;
-  results: string;
-}

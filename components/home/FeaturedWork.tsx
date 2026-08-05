@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ds/Button';
@@ -19,10 +20,10 @@ const TILE_BG = {
 
 /**
  * One work tile: masked scale-in reveal on scroll, gentle grow on hover.
- * The gradient composition is a placeholder for the named image slot
- * (project.imageSlot) — photography drops in without layout changes.
+ * The photograph fills the slot (`project.imageSlot`); the tint gradient stays
+ * behind it as the backdrop while the image loads.
  */
-function WorkTile({ project, tall }: { project: Project; tall?: boolean }) {
+function WorkTile({ project, tall, sizes }: { project: Project; tall?: boolean; sizes: string }) {
   return (
     <Link
       href={`/work/${project.slug}`}
@@ -36,10 +37,15 @@ function WorkTile({ project, tall }: { project: Project; tall?: boolean }) {
           className="absolute inset-0 transition-transform duration-[var(--duration-page)] ease-[var(--ease-out)] group-hover:scale-[1.04]"
           style={{ backgroundImage: TILE_BG[project.tint] }}
         >
-          {/* abstract composition until photography lands in the named slot */}
-          <span className="absolute -right-10 -top-10 h-40 w-40 rounded-full border border-[rgba(255,255,255,.25)]" />
-          <span className="absolute bottom-[30%] left-[8%] h-px w-1/3 bg-[rgba(255,255,255,.35)]" />
-          <span className="absolute right-[14%] top-[38%] h-16 w-12 rounded-md bg-[rgba(255,255,255,.12)]" />
+          <Image
+            src={project.imageSlot}
+            alt={project.title}
+            fill
+            sizes={sizes}
+            quality={90}
+            loading="lazy"
+            className="object-cover"
+          />
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(to_top,var(--overlay-scrim)_0%,transparent_55%)]" />
         <div className="absolute inset-x-0 bottom-0 p-3 text-ondark lg:p-4">
@@ -106,13 +112,13 @@ export function FeaturedWork() {
 
         <div ref={ref} className="grid gap-4 lg:grid-cols-2">
           <Reveal className="lg:col-span-2">
-            <WorkTile project={featuredProjects[0]} />
+            <WorkTile project={featuredProjects[0]} sizes="(min-width: 1024px) 1232px, 100vw" />
           </Reveal>
           <Reveal delay={0.1}>
-            <WorkTile project={featuredProjects[1]} tall />
+            <WorkTile project={featuredProjects[1]} tall sizes="(min-width: 1024px) 608px, 100vw" />
           </Reveal>
           <Reveal delay={0.2} className="lg:mt-16">
-            <WorkTile project={featuredProjects[2]} tall />
+            <WorkTile project={featuredProjects[2]} tall sizes="(min-width: 1024px) 608px, 100vw" />
           </Reveal>
         </div>
       </Container>

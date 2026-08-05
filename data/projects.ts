@@ -7,7 +7,7 @@ export interface Project {
   location: string;
   year: string;
   metric: { value: string; label: string };
-  /** named public image slot — real photography drops in later */
+  /** public/ path to the project photograph */
   imageSlot: string;
   tint: 'violet' | 'blue' | 'brand';
 }
@@ -23,31 +23,31 @@ export const featuredProjects: Project[] = [
     location: 'Dubai',
     year: '2025',
     metric: { value: '100%', label: 'compliance certification, zero downtime' },
-    imageSlot: '/images/work/fire-safety-terminal-hero.jpg',
+    imageSlot: '/images/featured/Rk.jpeg',
     tint: 'brand',
   },
   {
-    slug: 'marketplace-launch',
-    title: 'Marketplace launch across four regions',
-    client: 'Consumer brands group',
-    service: 'E-Commerce',
+    slug: 'Manpower-bridge-construction',
+    title: 'Construction of Bridges',
+    client: 'Construction',
+    service: 'Manpower',
     industry: 'Retail',
-    location: 'Singapore',
+    location: 'India',
     year: '2025',
     metric: { value: '3.4x', label: 'order volume in year one' },
-    imageSlot: '/images/work/marketplace-launch-hero.jpg',
+    imageSlot: '/images/featured/Sraj-featured.png',
     tint: 'blue',
   },
   {
-    slug: 'retail-loss-prevention',
-    title: 'Nationwide loss-prevention program',
-    client: 'Meridian Retail',
+    slug: 'Banking Due Diligence',
+    title: 'Regualar due diligence for banking sector',
+    client: 'Maharastra Bank',
     service: 'Due Diligence',
     industry: 'Retail',
-    location: 'London',
+    location: 'India',
     year: '2024',
     metric: { value: '32%', label: 'reduction in shrinkage in six months' },
-    imageSlot: '/images/work/loss-prevention-hero.jpg',
+    imageSlot: '/images/featured/bank.jpeg',
     tint: 'violet',
   },
 ];
