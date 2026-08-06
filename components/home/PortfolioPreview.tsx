@@ -9,7 +9,7 @@ import { StatusBadge } from '@/components/portfolio/StatusBadge';
 import { portfolioServices } from '@/lib/portfolio';
 import { portfolioProjects } from '@/data/portfolio';
 
-/** One representative project per vertical, spanning all six services. */
+/** One representative project per vertical, spanning every service that has work published. */
 const selection = portfolioServices
   .map((s) => portfolioProjects.find((p) => p.service === s && p.featured) ?? portfolioProjects.find((p) => p.service === s))
   .filter((p): p is (typeof portfolioProjects)[number] => Boolean(p));

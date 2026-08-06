@@ -20,7 +20,7 @@ export function GalleryHero() {
         <Reveal delay={0.2}>
           <p className="t-body-lg mt-5 max-w-reading text-muted">
             A visual record of the work OneSpheree has made — brand systems, websites, campaigns,
-            storefronts, fire-safety installations, spaces and product photography across all six verticals.
+            storefronts, fire-safety installations, spaces and product photography across all seven verticals.
             Browse the {galleryProjects.length}-piece gallery by discipline.
           </p>
         </Reveal>

@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { services } from '@/data/services';
 import { Icon } from '@/components/ds/Icon';
+import { ServiceIcon } from '@/components/services/ServiceIcon';
 
 /** Services mega menu — dropdown panel under the nav. Opens via group hover/focus from Navbar. */
 export function MegaMenu({ onNavigate }: { onNavigate?: () => void }) {
@@ -21,7 +22,9 @@ export function MegaMenu({ onNavigate }: { onNavigate?: () => void }) {
               className="group/item flex items-start gap-2 rounded-md p-2 transition-colors duration-[var(--duration-fast)] hover:bg-[var(--ink-50)] hover:no-underline"
             >
               <span className="mt-[2px] flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-primary-soft text-primary">
-                <Icon name={s.icon} size={18} />
+                {/* ServiceIcon delegates to the DS set for names it does not
+                    carry, so the six original glyphs are unchanged */}
+                <ServiceIcon name={s.icon} size={18} />
               </span>
               <span className="flex flex-col gap-[2px]">
                 <span className="flex items-center gap-1 text-[length:var(--text-nav-size)] font-semibold text-heading">

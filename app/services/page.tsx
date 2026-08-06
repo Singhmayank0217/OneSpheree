@@ -11,7 +11,7 @@ import { buildMetadata } from '@/lib/seo';
 export const metadata = buildMetadata({
   title: 'Services',
   description:
-    'Business solutions built around your growth — digital marketing, due diligence, fire & safety, reselling & e-commerce, manpower solutions and sales & consulting, plus the operations, compliance, technology and growth capabilities behind them.',
+    'Business solutions built around your growth — digital marketing, due diligence, fire & safety, reselling & e-commerce, manpower solutions, sales & consulting and financial & compliance services, plus the operations, compliance, technology and growth capabilities behind them.',
   path: '/services',
 });
 
@@ -22,9 +22,9 @@ export const metadata = buildMetadata({
  * architecture, navigation, footer) but none of the service-page section
  * components, and every chapter carries its own motion language:
  *
- *   Hero        connected ecosystem — six divisions wired to one hub, paths
+ *   Hero        connected ecosystem — seven divisions wired to one hub, paths
  *               expanding organically, particles travelling between units
- *   Flagship    six gateway cards, six different hover animations, each in
+ *   Flagship    seven gateway cards, seven different hover animations, each in
  *               its own division colour, each opening its dedicated page
  *   Beyond      capability bands (Operations / Compliance / Growth /
  *               Technology) plus a connected constellation of the focused
@@ -32,7 +32,7 @@ export const metadata = buildMetadata({
  *   Industries  expanding panels
  *   Why         3D tilt cards with a tracked specular sheen
  *   Process     a spine drawn by the scroll, stages alternating across it
- *   CTA         ambient blooms, a specular sweep, and the six division
+ *   CTA         ambient blooms, a specular sweep, and the seven division
  *               colours resolving into one spectrum at the footer seam
  *
  * Built across three milestones: M1 Hero/Flagship/Beyond Part 1, M2 Beyond

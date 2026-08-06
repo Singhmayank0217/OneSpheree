@@ -19,8 +19,9 @@ export function PortfolioHero() {
         />
         <Reveal delay={0.2}>
           <p className="t-body-lg mt-5 max-w-reading text-muted">
-            {portfolioProjects.length} completed and ongoing projects across all six OneSpheree
-            verticals — marketing, fire safety, due diligence, e-commerce, workforce and consulting.
+            {portfolioProjects.length} completed and ongoing projects across all seven OneSpheree
+            verticals — marketing, fire safety, due diligence, e-commerce, workforce, consulting and
+            financial compliance.
             Filter by vertical and status, and open any card to see the full story.
           </p>
         </Reveal>

@@ -3,7 +3,8 @@ export type ServiceName =
   | 'Due Diligence'
   | 'Fire Safety'
   | 'E-Commerce'
-  | 'Manpower Solutions';
+  | 'Manpower Solutions'
+  | 'Financial & Compliance Services';
 
 export type IndustryName =
   | 'Corporate'

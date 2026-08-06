@@ -1,10 +1,10 @@
 import type { ServicesHubContent } from '@/types/services-hub';
 
 /**
- * All-Services hub content (/services). The hub introduces the six divisions
+ * All-Services hub content (/services). The hub introduces the seven divisions
  * and sends visitors on to the dedicated service pages — so every card's
  * accent is the accent of the page it links to (see the `.dm-/.dd-/.fire-/
- * .ec-/.mp-/.sc-theme` scopes in globals.css). The page itself runs on the
+ * .ec-/.mp-/.sc-/.fc-theme` scopes in globals.css). The page itself runs on the
  * OneSpheree Orange `.hub-theme` scope.
  */
 export const servicesHub: ServicesHubContent = {
@@ -21,13 +21,13 @@ export const servicesHub: ServicesHubContent = {
 
   overview: {
     eyebrow: 'Services Overview',
-    headline: 'Six divisions. One accountable partner.',
+    headline: 'Seven divisions. One accountable partner.',
     body: [
       'Most organizations assemble their growth from a dozen disconnected vendors — an agency here, a staffing firm there, a consultant on retainer, a compliance contractor once a year. Coordination becomes the job.',
-      'OneSpheree runs all six divisions under one roof, one contract and one point of accountability. Each practice is deep enough to stand alone, and connected enough that strategy, people, systems and safety move as one programme.',
+      'OneSpheree runs all seven divisions under one roof, one contract and one point of accountability. Each practice is deep enough to stand alone, and connected enough that strategy, people, systems, finance and safety move as one programme.',
     ],
     figures: [
-      { value: 6, label: 'Business divisions' },
+      { value: 7, label: 'Business divisions' },
       { value: 120, suffix: '+', label: 'Organizations served' },
       { value: 18, label: 'Industries covered' },
       { value: 98, suffix: '%', label: 'Client retention' },
@@ -36,7 +36,7 @@ export const servicesHub: ServicesHubContent = {
 
   grid: {
     eyebrow: 'Flagship Services',
-    headline: 'Six practices, each with its own team.',
+    headline: 'Seven practices, each with its own team.',
     intro:
       'Every division below has a dedicated page of its own — the full scope of work, the methodology and the standards behind it. Start wherever your business needs the most help.',
     cards: [
@@ -111,6 +111,18 @@ export const servicesHub: ServicesHubContent = {
           'Sales strategy, business consulting, market expansion and CRM discipline, delivered hands-on until the numbers move.',
         visual: 'growth',
         accent: { base: '#06B6D4', glow: '#22D3EE', soft: 'rgba(6,182,212,.18)' },
+      },
+      {
+        slug: 'financial-compliance',
+        name: 'Financial & Compliance Services',
+        short: 'FINANCE',
+        index: '07',
+        icon: 'scale',
+        headline: 'Numbers that stand up to scrutiny.',
+        description:
+          'Taxation, audit, accounting, company law and payroll run by qualified professionals — filed on time, and defensible when it is checked.',
+        visual: 'ledger',
+        accent: { base: '#0F766E', glow: '#14B8A6', soft: 'rgba(20,184,166,.18)' },
       },
     ],
   },
@@ -313,7 +325,7 @@ export const servicesHub: ServicesHubContent = {
         icon: 'layers',
         title: 'Multi-Domain Expertise',
         blurb:
-          'Six flagship divisions and the capabilities behind them, so growth, people, systems and compliance are planned together.',
+          'Seven flagship divisions and the capabilities behind them, so growth, people, systems, finance and compliance are planned together.',
       },
       {
         icon: 'shield',

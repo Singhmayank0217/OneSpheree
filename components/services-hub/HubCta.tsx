@@ -13,10 +13,10 @@ gsap.registerPlugin(ScrollTrigger);
 /**
  * Final CTA — composition: THE APERTURE (expanding light portal).
  *
- * The page opens on the hub ecosystem, whose centre is a small aperture of six
- * coloured segments. It closes on that same aperture reopened at full scale: a
- * light well emerges, concentric rings expand outward through it, and the six
- * division colours resolve on one ring — a threshold the reader is standing in
+ * The page opens on the hub ecosystem, whose centre is a small aperture of one
+ * coloured segment per division. It closes on that same aperture reopened at
+ * full scale: a light well emerges, concentric rings expand outward through it,
+ * and the division colours resolve on one ring — a threshold the reader stands in
  * front of at the end of the journey. The statement is unmasked by a curtain
  * rise inside the portal, a threshold rule draws beneath it, and the actions
  * settle in last, once the light has stopped moving.
@@ -34,14 +34,15 @@ gsap.registerPlugin(ScrollTrigger);
  * trigonometry runs during render and SSR matches the client exactly.
  */
 
-/** the six 52° segments of the aperture, one per division */
+/** the seven 43.43° segments of the aperture, one per division (8° gaps) */
 const PORTAL_ARCS = [
-  'M411.50 43.52A430 430 0 0 1 788.50 43.52',
-  'M840.45 73.51A430 430 0 0 1 1028.95 400.00',
-  'M1028.95 460.00A430 430 0 0 1 840.45 786.49',
-  'M788.50 816.48A430 430 0 0 1 411.50 816.48',
-  'M359.55 786.49A430 430 0 0 1 171.05 460.00',
-  'M171.05 400.00A430 430 0 0 1 359.55 73.51',
+  'M440.91 30.51A430 430 0 0 1 759.09 30.51',
+  'M813.14 56.54A430 430 0 0 1 1011.52 305.31',
+  'M1024.87 363.79A430 430 0 0 1 954.07 674.00',
+  'M916.67 720.90A430 430 0 0 1 630.00 858.95',
+  'M570.00 858.95A430 430 0 0 1 283.33 720.90',
+  'M245.93 674.00A430 430 0 0 1 175.13 363.79',
+  'M188.48 305.31A430 430 0 0 1 386.86 56.54',
 ];
 
 /** faint structural rings — the portal's depth */
@@ -246,7 +247,7 @@ export function HubCta({ cta }: { cta: HubCtaContent }) {
             />
           ))}
 
-          {/* the aperture — the six divisions, reopened at full scale */}
+          {/* the aperture — every division, reopened at full scale */}
           {PORTAL_ARCS.map((d, i) => (
             <path
               key={cards[i].slug}
@@ -332,7 +333,7 @@ export function HubCta({ cta }: { cta: HubCtaContent }) {
         </div>
       </Container>
 
-      {/* six divisions, one spectrum — the seam into the footer */}
+      {/* every division, one spectrum — the seam into the footer */}
       <div data-cta-spectrum="" aria-hidden="true" className="relative flex w-full">
         {cards.map((c) => (
           <span

@@ -4,6 +4,7 @@ import { Reveal } from '@/components/animations/Reveal';
 import { RevealText } from '@/components/animations/RevealText';
 import { Icon } from '@/components/ds/Icon';
 import { ServiceIcon } from '@/components/services/ServiceIcon';
+import { cn } from '@/lib/utils';
 import type { AboutExpertise, AboutExpertiseContent } from '@/types/about';
 
 /**
@@ -14,9 +15,9 @@ import type { AboutExpertise, AboutExpertiseContent } from '@/types/about';
  * The outer div is the <Reveal stagger> child: GSAP leaves an inline transform
  * on what it animates, which would beat the card's hover translate.
  */
-function ExpertiseCard({ item }: { item: AboutExpertise }) {
+function ExpertiseCard({ item, className }: { item: AboutExpertise; className?: string }) {
   return (
-    <div className="h-full">
+    <div className={cn('h-full', className)}>
       <Link
         href={`/services/${item.slug}`}
         className="group flex h-full flex-col rounded-xl border border-line bg-card p-6 shadow-xs transition-[transform,box-shadow,border-color] duration-[var(--duration-slow)] ease-[var(--ease-out)] hover:-translate-y-1 hover:border-line-strong hover:no-underline hover:shadow-md"
@@ -56,7 +57,7 @@ function ExpertiseCard({ item }: { item: AboutExpertise }) {
 }
 
 /**
- * Our expertise — the six practices our people came from, each opening its own
+ * Our expertise — the seven practices our people came from, each opening its own
  * service page. A plain three-track grid: the point of this section is legibility
  * and breadth, not choreography.
  */
@@ -92,8 +93,18 @@ export function AboutExpertise({ content }: { content: AboutExpertiseContent }) 
         </div>
 
         <Reveal stagger="cards" className="mt-10 grid gap-5 sm:grid-cols-2 lg:mt-12 lg:auto-rows-fr lg:grid-cols-3">
-          {content.items.map((item) => (
-            <ExpertiseCard key={item.slug} item={item} />
+          {content.items.map((item, i) => (
+            <ExpertiseCard
+              key={item.slug}
+              item={item}
+              /* a three-track final row carrying one practice is centred
+                 rather than left hanging under the first column */
+              className={
+                i === content.items.length - 1 && content.items.length % 3 === 1
+                  ? 'lg:col-start-2'
+                  : undefined
+              }
+            />
           ))}
         </Reveal>
       </Container>

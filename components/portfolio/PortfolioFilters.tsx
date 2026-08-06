@@ -2,7 +2,7 @@
 import { serviceFilters, statusFilters } from '@/lib/portfolio';
 import { cn } from '@/lib/utils';
 
-/** Primary filter: the six service verticals (+ All Projects). */
+/** Primary filter: the seven service verticals (+ All Projects). */
 export function PortfolioFilters({
   service,
   onService,

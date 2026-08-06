@@ -13,6 +13,7 @@ import type { HubCardVisual, HubServiceCard } from '@/types/services-hub';
  *   marketplace E-Commerce          products flow down a route into the storefront
  *   network     Manpower            a workforce network builds outward from the hub
  *   growth      Sales & Consulting  stages rise, a trajectory climbs to the target
+ *   ledger      Financial & Comp.   figures tally, then the balance settles level
  *
  * Each SVG's markup is the FINISHED artwork, so with JavaScript off or reduced
  * motion on, the card still reads correctly. On mount the effect sets the
@@ -430,6 +431,54 @@ function GrowthVisual({ active, accent }: VisualProps) {
   );
 }
 
+/* ── 07 · Financial & Compliance — the ledger balances ──────────────────── */
+const LEDGER_ROWS = [66, 88, 110];
+
+function LedgerVisual({ active, accent }: VisualProps) {
+  const ref = useHoverMotion(active, (tl) => {
+    gsap.set('[data-fig]', { scaleX: 0, transformOrigin: '0% 50%' });
+    gsap.set('[data-rule]', { strokeDashoffset: 100 });
+    gsap.set('[data-beam]', { rotation: -12, svgOrigin: '240 54' });
+    gsap.set('[data-level]', { strokeDashoffset: 100, opacity: 0 });
+    tl.to('[data-fig]', { scaleX: 1, duration: 0.46, ease: 'power2.out', stagger: 0.15 }, 0)
+      .to('[data-rule]', { strokeDashoffset: 0, duration: 0.5, ease: 'power2.out' }, 0.66)
+      // the scale swings past level, then settles — the only settling motion
+      // on the grid, and the whole point of the division
+      .to('[data-beam]', { rotation: 8, duration: 0.6, ease: 'power2.inOut' }, 0.5)
+      .to('[data-beam]', { rotation: 0, duration: 1, ease: 'elastic.out(1, 0.55)' }, 1.1)
+      .to('[data-level]', { opacity: 1, duration: 0.2 }, 1.55)
+      .to('[data-level]', { strokeDashoffset: 0, duration: 0.6, ease: 'power2.out' }, 1.55);
+  });
+
+  return (
+    <svg ref={ref} viewBox={VIEW} fill="none" aria-hidden="true" className="h-full w-full">
+      {/* the statement */}
+      <rect x="26" y="22" width="146" height="122" rx="10" fill="rgba(255,255,255,.03)" stroke={STRUCT} />
+      <rect x="44" y="40" width="48" height="5" rx="2.5" fill="rgba(255,255,255,.35)" />
+      {LEDGER_ROWS.map((y) => (
+        <g key={y}>
+          <rect x="44" y={y} width="42" height="4" rx="2" fill="rgba(255,255,255,.22)" />
+          <rect data-fig="" x="100" y={y - 1} width="52" height="6" rx="3" fill={accent.base} fillOpacity=".6" />
+        </g>
+      ))}
+      <path data-rule="" d="M100 126H152" stroke={accent.glow} strokeOpacity=".7" pathLength={100} strokeDasharray="100" />
+      <rect data-fig="" x="100" y="132" width="52" height="6" rx="3" fill={accent.glow} fillOpacity=".85" />
+
+      {/* the balance */}
+      <path d="M240 54v78" stroke={accent.base} strokeOpacity=".55" strokeWidth="1.6" />
+      <path d="M218 134h44" stroke={accent.base} strokeOpacity=".55" strokeWidth="1.6" strokeLinecap="round" />
+      <path data-level="" d="M190 54h100" stroke={accent.glow} strokeOpacity=".45" strokeDasharray="5 5" pathLength={100} />
+      <g data-beam="">
+        <path d="M198 54h84" stroke={accent.glow} strokeWidth="2" strokeLinecap="round" />
+        <path d="M202 54v14M278 54v14" stroke={accent.base} strokeOpacity=".5" strokeWidth="1.3" />
+        <path d="M188 68h28l-14 16z" fill={accent.soft} stroke={accent.base} strokeOpacity=".6" strokeLinejoin="round" />
+        <path d="M264 68h28l-14 16z" fill={accent.soft} stroke={accent.base} strokeOpacity=".6" strokeLinejoin="round" />
+      </g>
+      <circle cx="240" cy="54" r="5" fill={accent.base} />
+    </svg>
+  );
+}
+
 const VISUALS: Record<HubCardVisual, ComponentType<VisualProps>> = {
   signal: SignalVisual,
   scan: ScanVisual,
@@ -437,6 +486,7 @@ const VISUALS: Record<HubCardVisual, ComponentType<VisualProps>> = {
   marketplace: MarketplaceVisual,
   network: NetworkVisual,
   growth: GrowthVisual,
+  ledger: LedgerVisual,
 };
 
 export function CardVisual({ visual, active, accent }: { visual: HubCardVisual } & VisualProps) {

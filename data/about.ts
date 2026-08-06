@@ -6,7 +6,7 @@ import type { AboutContent } from '@/types/about';
  * Positioning, per the brief: OneSpheree is a YOUNG company built by people who
  * are not young in their fields. Nothing here claims a long corporate history,
  * a founding decade, or volume metrics a new company could not have earned; the
- * proof points are the team's combined experience and the breadth of the six
+ * proof points are the team's combined experience and the breadth of the seven
  * practices. Tone: professional, knowledge-driven, forward-looking.
  */
 export const about: AboutContent = {
@@ -14,11 +14,11 @@ export const about: AboutContent = {
     eyebrow: 'About OneSpheree',
     lines: ['A new company.', 'Experienced people.', 'One partner.'],
     lede:
-      'OneSpheree is a young business group built by professionals with years of experience across marketing, diligence, safety engineering, commerce, workforce and consulting. We brought those disciplines under one name so businesses no longer have to assemble them one vendor at a time.',
+      'OneSpheree is a young business group built by professionals with years of experience across marketing, diligence, safety engineering, commerce, workforce, consulting and financial compliance. We brought those disciplines under one name so businesses no longer have to assemble them one vendor at a time.',
     primaryCta: { label: 'Talk to our team', href: '/contact' },
     secondaryCta: { label: 'Explore our services', href: '/services' },
     facts: [
-      { value: 'Six', label: 'practice areas under one team' },
+      { value: 'Seven', label: 'practice areas under one team' },
       { value: 'Multi-industry', label: 'experience behind every engagement' },
       { value: 'One', label: 'point of accountability' },
     ],
@@ -28,9 +28,9 @@ export const about: AboutContent = {
     eyebrow: 'Who we are',
     headline: 'Built by specialists who were tired of working in isolation.',
     body: [
-      'OneSpheree is a young company, and we say so plainly. What is not young is the experience behind it — our team has spent years inside marketing agencies, audit and diligence practices, fire and safety engineering, marketplace operations, staffing firms and consulting rooms.',
+      'OneSpheree is a young company, and we say so plainly. What is not young is the experience behind it — our team has spent years inside marketing agencies, audit and diligence practices, fire and safety engineering, marketplace operations, staffing firms, consulting rooms and chartered accountancy practices.',
       'Working in those fields, we kept seeing the same problem from different sides: a client with a question that spanned two or three disciplines, and nobody willing to own the whole of it. Strategy stopped where compliance began. Hiring was somebody else’s problem. The gaps between vendors cost more than the vendors did.',
-      'So we built the company we would have wanted to call. One team, six practices, one person accountable for the outcome — with the specialists in the building rather than on a referral list.',
+      'So we built the company we would have wanted to call. One team, seven practices, one person accountable for the outcome — with the specialists in the building rather than on a referral list.',
     ],
     points: [
       {
@@ -79,7 +79,7 @@ export const about: AboutContent = {
 
   expertise: {
     eyebrow: 'Our expertise',
-    headline: 'Six practices, one team.',
+    headline: 'Seven practices, one team.',
     intro:
       'These are the disciplines our people came from, and the reason a single conversation with us can cover ground that would otherwise take several.',
     items: [
@@ -137,6 +137,15 @@ export const about: AboutContent = {
           'Go-to-market strategy, sales process and business advisory that ends in an operating plan rather than a recommendation.',
         capabilities: ['Sales strategy', 'Market expansion', 'Business advisory'],
       },
+      {
+        slug: 'financial-compliance',
+        index: '07',
+        name: 'Financial & Compliance Services',
+        icon: 'scale',
+        blurb:
+          'Taxation, audit, accounting and company law handled by qualified professionals, so the books are accurate before anyone asks to see them.',
+        capabilities: ['Direct tax & GST', 'Audit & assurance', 'Accounting & ROC compliance'],
+      },
     ],
     cta: { label: 'See all services', href: '/services' },
   },
@@ -152,7 +161,7 @@ export const about: AboutContent = {
         icon: 'layers',
         title: 'One partner across domains',
         blurb:
-          'Marketing, diligence, safety, commerce, workforce and consulting under one agreement, one escalation path and one set of numbers — no gaps between vendors to manage.',
+          'Marketing, diligence, safety, commerce, workforce, consulting and financial compliance under one agreement, one escalation path and one set of numbers — no gaps between vendors to manage.',
       },
       {
         index: '02',

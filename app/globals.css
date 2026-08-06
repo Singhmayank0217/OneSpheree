@@ -129,6 +129,35 @@
 --gradient-brand-soft:linear-gradient(135deg,var(--violet-50) 0%,var(--blue-50) 100%);
 }
 
+/* ── Financial & Compliance page theme — Emerald / Deep Teal ──────────────
+   Violet slot → deep emerald (#0F766E primary / #14B8A6 glow), blue slot → the
+   brighter emerald highlight (#34D399 at the 300 step, which is where
+   .t-eyebrow-ondark paints from): a chartered-practice identity — assured,
+   exact, quietly premium — deliberately deeper and more teal than the Due
+   Diligence emerald so the two divisions never read as one. Both accent slots
+   are emerald here, so nothing on the page can resolve to blue or violet.
+
+   Like .about-theme, this scope also retunes its SURFACES: the dark sections
+   are deep teal-black (#071917) rather than the near-black charcoal, and the
+   hairlines carry a trace of teal, which is what gives the division its own
+   room without touching a single shared component. */
+.fc-theme{
+--violet-50:#F0FDFA;--violet-100:#CCFBF1;--violet-200:#99F6E4;--violet-300:#5EEAD4;--violet-400:#14B8A6;--violet-500:#0F766E;--violet-600:#0C5F58;--violet-700:#0A4A45;--violet-900:#042F2C;
+--blue-50:#ECFDF5;--blue-100:#D1FAE5;--blue-200:#A7F3D0;--blue-300:#34D399;--blue-400:#10B981;--blue-500:#059669;--blue-600:#047857;--blue-700:#065F46;
+--color-primary:var(--violet-500);--color-primary-hover:var(--violet-600);--color-primary-active:var(--violet-700);
+--color-primary-soft:var(--violet-50);--color-primary-soft-hover:var(--violet-100);
+--color-secondary:var(--blue-500);--color-secondary-hover:var(--blue-600);--color-secondary-soft:var(--blue-50);
+--text-link:var(--color-primary);--text-link-hover:var(--color-primary-hover);
+--border-focus:var(--color-primary);
+--focus-ring:0 0 0 3px rgba(15,118,110,.35);
+--color-selection-bg:var(--violet-100);--color-selection-text:var(--violet-700);
+--gradient-brand:linear-gradient(135deg,var(--violet-500) 0%,var(--blue-500) 100%);
+--gradient-brand-soft:linear-gradient(135deg,var(--violet-50) 0%,var(--blue-50) 100%);
+/* surfaces — deep teal instead of charcoal, teal-tinted hairlines and muted text */
+--surface-dark:#071917;--surface-dark-elevated:#0B2523;
+--border-dark:#14403A;--text-on-dark-muted:#9CB6B1;
+}
+
 /* ── About page theme — Deep Navy / Soft Blue ─────────────────────────────
    About is the page that introduces the people, so it gets a calm, corporate
    identity of its own: the violet slot becomes a royal navy (#2E5BC0 primary)

@@ -22,6 +22,7 @@ const TECH: Record<PortfolioService, string[]> = {
   'E-Commerce': ['Next.js', 'Shopify', 'Stripe', 'Algolia', 'Contentful'],
   'Manpower Solutions': ['ATS', 'Payroll suite', 'Compliance tracker', 'Onboarding portal'],
   'Sales & Consulting': ['Salesforce', 'Pipeline analytics', 'Market model', 'Power BI', 'HubSpot'],
+  'Financial & Compliance Services': ['Tally', 'Zoho Books', 'GST portal', 'MCA / ROC filings', 'Audit working papers'],
 };
 
 const TYPE: Record<PortfolioService, string> = {
@@ -31,6 +32,7 @@ const TYPE: Record<PortfolioService, string> = {
   'E-Commerce': 'Build & operate',
   'Manpower Solutions': 'Managed service',
   'Sales & Consulting': 'Strategic advisory',
+  'Financial & Compliance Services': 'Compliance retainer',
 };
 
 const VALUES: Record<PortfolioService, string[]> = {
@@ -40,6 +42,7 @@ const VALUES: Record<PortfolioService, string[]> = {
   'E-Commerce': ['$480K', '$720K', '$310K', '$1.1M'],
   'Manpower Solutions': ['$640K', '$1.2M', '$380K', '$920K'],
   'Sales & Consulting': ['$260K', '$540K', '$1.3M', '$180K'],
+  'Financial & Compliance Services': ['$60K', '$120K', '$210K', '$340K'],
 };
 
 const DURATIONS: Record<PortfolioService, string[]> = {
@@ -49,6 +52,7 @@ const DURATIONS: Record<PortfolioService, string[]> = {
   'E-Commerce': ['5 months', '8 months', '11 months'],
   'Manpower Solutions': ['3 months', '7 months', 'Ongoing'],
   'Sales & Consulting': ['4 months', '9 months', '12 months'],
+  'Financial & Compliance Services': ['One financial year', 'Ongoing retainer', '6 months'],
 };
 
 const OVERVIEW: Record<PortfolioService, (c: string) => string> = {
@@ -58,6 +62,8 @@ const OVERVIEW: Record<PortfolioService, (c: string) => string> = {
   'E-Commerce': (c) => `A commerce platform engineered to scale with demand across ${c}'s markets.`,
   'Manpower Solutions': (c) => `Verified, compliant workforce sourced, deployed and payrolled across ${c}'s operations.`,
   'Sales & Consulting': (c) => `A strategy and sales engagement that reset the growth trajectory for ${c}.`,
+  'Financial & Compliance Services': (c) =>
+    `Accounting, taxation and statutory filings brought current and kept audit-ready for ${c}.`,
 };
 
 const DESCRIPTION: Record<PortfolioService, (c: string, loc: string) => string> = {
@@ -73,6 +79,8 @@ const DESCRIPTION: Record<PortfolioService, (c: string, loc: string) => string> 
     `${c} needed the right people in place across ${loc}, faster than traditional hiring allowed. We treated workforce as infrastructure — one standard for screening, onboarding, payroll and compliance across every role and location.`,
   'Sales & Consulting': (c, loc) =>
     `${c} had ambition outpacing its go-to-market. We pressure-tested the market opportunity in ${loc}, rebuilt the sales motion around it, and stood up the pipeline, roadmap and cadence to make growth repeatable rather than heroic.`,
+  'Financial & Compliance Services': (c, loc) =>
+    `${c}'s books, filings and statutory records had drifted behind the business. We rebuilt the accounting to a fixed monthly close across ${loc}, brought direct tax, GST and ROC obligations current, and left an audit trail that stands up to review rather than one that has to be explained.`,
 };
 
 let seq = 0;

@@ -7,7 +7,7 @@ import { HubJumpButton } from './HubJumpButton';
 import type { HubHeroContent } from '@/types/services-hub';
 
 /**
- * Hub hero — a centred POSTER composition, deliberately unlike the six service
+ * Hub hero — a centred POSTER composition, deliberately unlike the seven service
  * pages (all of which run a copy column beside their artwork). The statement
  * is set centre-stage and the connected-ecosystem diagram is the stage itself,
  * opening beneath the copy and bleeding into the section below.

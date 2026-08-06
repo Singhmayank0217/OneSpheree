@@ -13,9 +13,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Services Overview — composition: the SPECTRUM. An editorial statement sits
- * above a single hairline broken into the six divisions' colours; the segments
+ * above a single hairline broken into the divisions' colours; the segments
  * draw out from their left edge in sequence as the section arrives, reading as
- * one continuous band rather than six separate things. The figures beneath
+ * one continuous band rather than several separate things. The figures beneath
  * count up on entry. No cards, no icons — the section's whole motion language
  * is the drawn line.
  */
@@ -75,8 +75,8 @@ export function HubOverview({ overview }: { overview: HubOverviewContent }) {
           </Reveal>
         </div>
 
-        {/* the spectrum — six divisions read as one continuous band */}
-        <div data-spectrum="" className="mt-12 grid grid-cols-3 gap-x-3 gap-y-6 sm:grid-cols-6">
+        {/* the spectrum — every division read as one continuous band */}
+        <div data-spectrum="" className="mt-12 grid grid-cols-3 gap-x-3 gap-y-6 sm:grid-cols-4 lg:grid-cols-7">
           {cards.map((c) => (
             <div key={c.slug}>
               <span

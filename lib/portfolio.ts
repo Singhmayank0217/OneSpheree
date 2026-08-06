@@ -13,6 +13,7 @@ export const portfolioServices: PortfolioService[] = [
   'E-Commerce',
   'Manpower Solutions',
   'Sales & Consulting',
+  'Financial & Compliance Services',
 ];
 
 /** Primary filter chips (service verticals). */
@@ -65,7 +66,7 @@ export function getNextPortfolio(project: PortfolioProject): PortfolioProject {
 /* -------------------------------------------------------------------------- */
 /*  Service-adaptive detail composition — each vertical produces a different    */
 /*  sequence of blocks, built from the project's structured fields so the       */
-/*  layout stays CMS-ready. One unified design language, six distinct shapes.   */
+/*  layout stays CMS-ready. One unified design language, seven distinct shapes. */
 /* -------------------------------------------------------------------------- */
 
 const statsFrom = (p: PortfolioProject) => {
@@ -186,6 +187,32 @@ export function getDetailBlocks(project: PortfolioProject): DetailBlock[] {
         },
         { type: 'metrics', label: 'Revenue impact & KPIs', items: statsFrom(p) },
         { type: 'quote', body: `They reset our trajectory — a sharper strategy and a pipeline we can actually forecast.`, attribution: `${p.client}` },
+      ];
+    case 'Financial & Compliance Services':
+      return [
+        { type: 'prose', label: 'Engagement overview', body: p.description },
+        {
+          type: 'specs',
+          label: 'Scope of work',
+          items: [
+            { k: 'Client', v: p.client },
+            { k: 'Engagement', v: p.projectType },
+            { k: 'Jurisdiction', v: p.location },
+            { k: 'Reporting cycle', v: p.duration },
+          ],
+        },
+        {
+          type: 'process',
+          label: 'Compliance cycle',
+          steps: [
+            { title: 'Books & records', body: 'Accounting brought current, reconciled and closed on a fixed monthly calendar.' },
+            { title: 'Statutory filings', body: 'Direct tax, GST and ROC returns prepared, reviewed and filed on time.' },
+            { title: 'Audit & assurance', body: 'Schedules, working papers and evidence readied for statutory review.' },
+            { title: 'Advisory', body: 'A documented position on every exposure, in language the board can act on.' },
+          ],
+        },
+        { type: 'metrics', label: 'Compliance outcomes', items: statsFrom(p) },
+        { type: 'status', label: 'Filing status' },
       ];
   }
 }

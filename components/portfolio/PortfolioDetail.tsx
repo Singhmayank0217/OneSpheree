@@ -9,7 +9,7 @@ import type { DetailBlock, PortfolioProject } from '@/types/portfolio';
 /**
  * Service-adaptive detail body. The block SEQUENCE differs per vertical
  * (see lib/portfolio → getDetailBlocks) while every block is rendered from the
- * same small set of primitives — one design language, six distinct shapes.
+ * same small set of primitives — one design language, seven distinct shapes.
  */
 export function PortfolioDetail({ project }: { project: PortfolioProject }) {
   const blocks = getDetailBlocks(project);

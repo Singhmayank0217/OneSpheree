@@ -5,8 +5,15 @@
  * so its shapes carry per-division colour identity and card artwork keys.
  */
 
-/** The six hover artworks — one per division, never repeated. */
-export type HubCardVisual = 'signal' | 'scan' | 'blueprint' | 'marketplace' | 'network' | 'growth';
+/** The seven hover artworks — one per division, never repeated. */
+export type HubCardVisual =
+  | 'signal'
+  | 'scan'
+  | 'blueprint'
+  | 'marketplace'
+  | 'network'
+  | 'growth'
+  | 'ledger';
 
 export interface HubServiceCard {
   slug: string;
@@ -14,7 +21,7 @@ export interface HubServiceCard {
   name: string;
   /** compact uppercase label for the hero ecosystem module */
   short: string;
-  index: string; // '01'…'06'
+  index: string; // '01'…'07'
   icon: string;
   /** short editorial headline */
   headline: string;
@@ -37,7 +44,7 @@ export interface HubHeroContent {
   secondaryCta: { label: string; href: string };
 }
 
-/* ── Beyond Services: the capabilities that sit outside the six flagship
+/* ── Beyond Services: the capabilities that sit outside the seven flagship
       divisions, grouped rather than listed ─────────────────────────────── */
 
 export interface HubCapability {

@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Capability-group artwork for Beyond Services — one wide panoramic
- * illustration per group, in the hub's own orange (the six flagship colours
+ * illustration per group, in the hub's own orange (the seven flagship colours
  * belong to the flagship cards alone, so these read as a different tier of
  * work rather than a seventh division).
  *

@@ -5,7 +5,7 @@ import { buildMetadata } from '@/lib/seo';
 export const metadata = buildMetadata({
   title: 'Portfolio',
   description:
-    'Completed and ongoing OneSpheree projects across all six verticals — digital marketing, fire safety, due diligence, e-commerce, manpower solutions and sales & consulting.',
+    'Completed and ongoing OneSpheree projects across all seven verticals — digital marketing, fire safety, due diligence, e-commerce, manpower solutions, sales & consulting and financial & compliance services.',
   path: '/portfolio',
 });
 

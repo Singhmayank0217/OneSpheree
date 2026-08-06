@@ -10,7 +10,7 @@ export const faqItems: FaqItem[] = [
   },
   {
     q: 'Can you run multiple business lines in one engagement?',
-    a: 'Yes, this is the core of the OneSpheree model — one account team coordinates across all six business lines.',
+    a: 'Yes, this is the core of the OneSpheree model — one account team coordinates across all seven business lines.',
   },
   {
     q: 'Which industries do you cover?',

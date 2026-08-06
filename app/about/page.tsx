@@ -11,7 +11,7 @@ import { buildMetadata } from '@/lib/seo';
 export const metadata = buildMetadata({
   title: 'About',
   description:
-    'OneSpheree is a young business group built by professionals with years of experience across digital marketing, due diligence, fire & safety, reselling & e-commerce, manpower solutions and business consulting — one trusted partner across domains.',
+    'OneSpheree is a young business group built by professionals with years of experience across digital marketing, due diligence, fire & safety, reselling & e-commerce, manpower solutions, business consulting and financial & compliance services — one trusted partner across domains.',
   path: '/about',
 });
 
@@ -21,7 +21,7 @@ export const metadata = buildMetadata({
  *   Hero            masked statement on deep navy, blooms on a capped parallax
  *   Who we are      two-column editorial: the argument, and the beliefs under it
  *   Vision/mission  two premium panels on a soft brand-tinted band
- *   Expertise       the six practices as cards, each opening its service page
+ *   Expertise       the seven practices as cards, each opening its service page
  *   Why choose us   the contrast band: four reasons as hairline rows on navy
  *   Values          six values on a hairline grid, numbered in the accent orange
  *   Final CTA       centred navy close with a brand seam into the footer

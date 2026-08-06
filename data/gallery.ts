@@ -39,6 +39,8 @@ const DESC: Record<ServiceName, (client: string) => string> = {
   'Fire Safety': (c) => `Compliance-focused fire safety systems protecting people and infrastructure at ${c}.`,
   'E-Commerce': (c) => `A commerce platform built to scale with demand for ${c}.`,
   'Manpower Solutions': (c) => `Skilled, verified workforce deployed across ${c}'s operations.`,
+  'Financial & Compliance Services': (c) =>
+    `Accounting, taxation and statutory compliance kept current and audit-ready for ${c}.`,
 };
 
 const TAGS: Record<ServiceName, string[]> = {
@@ -47,6 +49,7 @@ const TAGS: Record<ServiceName, string[]> = {
   'Fire Safety': ['Compliance', 'Safety systems', 'Certification'],
   'E-Commerce': ['Storefront', 'Fulfillment', 'Payments'],
   'Manpower Solutions': ['Staffing', 'Payroll', 'Workforce'],
+  'Financial & Compliance Services': ['Taxation', 'Audit', 'Compliance'],
 };
 
 let seq = 0;

@@ -211,7 +211,7 @@ export const contactPage: ContactPageContent = {
       },
       {
         q: 'Do you offer custom solutions?',
-        a: 'Almost always. Our six divisions are the building blocks, not the product — most engagements combine two or three of them into one scope with one contract and one point of accountability. Tell us the outcome you need and we will propose the shape.',
+        a: 'Almost always. Our seven divisions are the building blocks, not the product — most engagements combine two or three of them into one scope with one contract and one point of accountability. Tell us the outcome you need and we will propose the shape.',
       },
       {
         q: 'Can we schedule meetings?',
@@ -264,6 +264,7 @@ export const SERVICE_OPTIONS = [
   'Reselling & E-Commerce',
   'Manpower Solutions',
   'Sales & Consulting',
+  'Financial & Compliance Services',
   'General Business Consulting',
   'Other',
 ] as const;

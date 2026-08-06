@@ -8,6 +8,12 @@ import type { GalleryProject, GalleryCategory, ServiceName } from '@/types/galle
  */
 export const HAS_REAL_IMAGERY = false;
 
+/**
+ * The chips actually offered on /work. A vertical joins this list once it has
+ * photography in the archive — the taxonomy in types/gallery.ts already carries
+ * every division (including Financial & Compliance Services), so adding the
+ * label here is the only step when its first project lands.
+ */
 const SERVICES: ServiceName[] = [
   'Digital Marketing',
   'Due Diligence',

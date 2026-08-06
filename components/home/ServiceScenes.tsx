@@ -25,6 +25,7 @@ const PLACEMENT = [
   'lg:absolute lg:left-0 lg:top-[14%] lg:max-w-[520px]',
   'lg:absolute lg:right-0 lg:bottom-[18%] lg:max-w-[560px]',
   'lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 lg:max-w-[540px]',
+  'lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:max-w-[520px]',
 ];
 
 const ARTIFACT = [
@@ -34,6 +35,7 @@ const ARTIFACT = [
   { x: '27vw', y: '0vh', rotation: 0, scaleX: 0.55, scaleY: 1.4, borderRadius: '32px' },
   { x: '-22vw', y: '-3vh', rotation: 8, scaleX: 0.92, scaleY: 0.92, borderRadius: '999px' },
   { x: '22vw', y: '7vh', rotation: -10, scaleX: 1.2, scaleY: 0.8, borderRadius: '44px' },
+  { x: '-24vw', y: '-7vh', rotation: 6, scaleX: 0.85, scaleY: 1.1, borderRadius: '56px' },
 ];
 
 const GRADIENTS = [
@@ -43,6 +45,7 @@ const GRADIENTS = [
   'linear-gradient(150deg, var(--blue-600), var(--violet-700))',
   'linear-gradient(135deg, var(--violet-500), var(--blue-500))',
   'linear-gradient(140deg, var(--violet-700), var(--blue-600))',
+  'linear-gradient(125deg, var(--blue-600), var(--violet-500))',
 ];
 
 const STAGE_TINTS = [
@@ -52,6 +55,7 @@ const STAGE_TINTS = [
   'radial-gradient(60% 55% at 80% 55%, color-mix(in srgb, var(--blue-500) 18%, transparent), transparent 70%)',
   'radial-gradient(60% 55% at 25% 35%, color-mix(in srgb, var(--violet-500) 18%, transparent), transparent 70%)',
   'radial-gradient(62% 55% at 68% 62%, color-mix(in srgb, var(--violet-500) 17%, transparent), transparent 70%)',
+  'radial-gradient(60% 55% at 30% 45%, color-mix(in srgb, var(--blue-500) 17%, transparent), transparent 70%)',
 ];
 
 /**
@@ -62,6 +66,13 @@ const STAGE_TINTS = [
  */
 const PHOTO_SIZES = '(min-width: 1024px) 60vw, 100vw';
 
+/**
+ * These photographs are enlarged by the artifact's morph (up to 1.55×), so they
+ * are re-encoded above the 75 default — compression softening is the one loss of
+ * sharpness that costs almost nothing to remove at these file sizes.
+ */
+const PHOTO_QUALITY = 90;
+
 /** Inner-shape poses (ring + panel) per scene — small recompositions inside the artifact. */
 const SHAPE_A = [
   { x: '6%', y: '-12%', scale: 1, rotation: 0 },
@@ -70,6 +81,7 @@ const SHAPE_A = [
   { x: '0%', y: '-30%', scale: 0.8, rotation: 140 },
   { x: '12%', y: '18%', scale: 1.1, rotation: 200 },
   { x: '-8%', y: '22%', scale: 1.15, rotation: 260 },
+  { x: '18%', y: '-14%', scale: 0.9, rotation: 320 },
 ];
 const SHAPE_B = [
   { x: '-20%', y: '35%', scale: 1, rotation: -8 },
@@ -78,6 +90,7 @@ const SHAPE_B = [
   { x: '20%', y: '30%', scale: 1.15, rotation: 6 },
   { x: '-10%', y: '-28%', scale: 0.9, rotation: -14 },
   { x: '18%', y: '-22%', scale: 1.05, rotation: 22 },
+  { x: '-24%', y: '18%', scale: 0.95, rotation: -18 },
 ];
 
 /**
@@ -115,7 +128,14 @@ export function ServiceScenes() {
       const step = 100 / services.length; // masked-track shift per scene, in percent
 
       gsap.set(scenes.slice(1), { autoAlpha: 0 });
-      gsap.set(artifactRef.current, { ...ARTIFACT[0], autoAlpha: 0 });
+      // force3D:false everywhere the artifact (and the photography inside it)
+      // is transformed. With GSAP's default `force3D:'auto'` the element is
+      // promoted to a 3D layer for the whole scrubbed timeline: the browser
+      // rasterises it ONCE at its resting size and then GPU-scales that texture,
+      // so every scene whose pose scales up (peak 1.55×) shows a softened,
+      // hazy photo for as long as you are scrolling. Staying on 2D transforms
+      // makes the photo re-rasterise at the size it is actually drawn at.
+      gsap.set(artifactRef.current, { ...ARTIFACT[0], autoAlpha: 0, force3D: false });
       gsap.set(gradLayers[0], { backgroundImage: GRADIENTS[0], opacity: 1 });
       gsap.set(tintLayers[0], { backgroundImage: STAGE_TINTS[0], opacity: 1 });
       gsap.set(photoLayers[0], { opacity: 1 });
@@ -135,7 +155,7 @@ export function ServiceScenes() {
         lastX = sx;
         lastY = sy;
         const k = Math.max(sx, sy);
-        gsap.set(photoRef.current, { scaleX: k / sx, scaleY: k / sy });
+        gsap.set(photoRef.current, { scaleX: k / sx, scaleY: k / sy, force3D: false });
       };
       counterScale();
       gsap.ticker.add(counterScale);
@@ -145,7 +165,9 @@ export function ServiceScenes() {
         scrollTrigger: {
           trigger: stage,
           start: 'top top',
-          end: '+=620%',
+          // one viewport of scroll per scene, plus the closing hold — so the
+          // per-scene pacing is unchanged whatever the division count
+          end: `+=${services.length * 100 + 20}%`,
           pin: true,
           scrub: true,
           anticipatePin: 1,
@@ -174,7 +196,7 @@ export function ServiceScenes() {
           .to(items(scenes[i - 1]), { autoAlpha: 0, y: -26, duration: 0.28, stagger: 0.03 }, t)
           .set(scenes[i - 1], { autoAlpha: 0 }, t + 0.34)
           // the artifact carries the transition — new pose, shapes, color
-          .to(artifactRef.current, { ...ARTIFACT[i], duration: 0.7, ease: 'power2.inOut' }, t)
+          .to(artifactRef.current, { ...ARTIFACT[i], duration: 0.7, ease: 'power2.inOut', force3D: false }, t)
           .to(shapeARef.current, { ...SHAPE_A[i], duration: 0.7, ease: 'power2.inOut' }, t)
           .to(shapeBRef.current, { ...SHAPE_B[i], duration: 0.7, ease: 'power2.inOut' }, t)
           .set(grad, { backgroundImage: GRADIENTS[i] }, t)
@@ -206,7 +228,7 @@ export function ServiceScenes() {
       // About happens through the dawn wash at the section boundary. This is
       // what prevents an empty trailing viewport after the pin releases.
       const tEnd = scenes.length;
-      tl.to(artifactRef.current, { autoAlpha: 0, scale: 0.94, duration: 0.5, ease: 'power2.inOut' }, tEnd)
+      tl.to(artifactRef.current, { autoAlpha: 0, scale: 0.94, duration: 0.5, ease: 'power2.inOut', force3D: false }, tEnd)
         .to([watermarkRef.current?.parentElement ?? null, '[data-ticker]'], { autoAlpha: 0, duration: 0.4 }, tEnd)
         // brief hold on the resolved final scene before the pin releases
         .to({}, { duration: 0.35 });
@@ -227,6 +249,11 @@ export function ServiceScenes() {
         gsap.fromTo(scene, REVEAL_FROM, {
           ...REVEAL_TO,
           scrollTrigger: { trigger: scene, start: 'top 85%', once: true },
+          // The shared reveal preset lands on `filter: blur(0px)`, and an inline
+          // filter — even a zero-radius one — keeps the scene on the filter
+          // pipeline, which softens the photograph inside it. Drop the property
+          // once the reveal has played so the card is composited normally.
+          onComplete: () => gsap.set(scene, { clearProps: 'filter' }),
         });
       });
     });
@@ -242,7 +269,7 @@ export function ServiceScenes() {
           <p className="t-eyebrow t-eyebrow-ondark">What we do</p>
         </Reveal>
         <RevealText
-          text="Six business lines, one accountable partner."
+          text="Seven business lines, one accountable partner."
           as="h2"
           className="t-display ondark-heading mt-2 max-w-[720px]"
         />
@@ -272,7 +299,7 @@ export function ServiceScenes() {
           </div>
         </div>
 
-        {/* the morphing artifact — one object, five poses */}
+        {/* the morphing artifact — one object, one pose per scene */}
         <div
           ref={artifactRef}
           aria-hidden="true"
@@ -285,13 +312,25 @@ export function ServiceScenes() {
             {/* service photography — one layer per scene, riding the artifact's
                 pose; the frame counter-scales so each photo crops, never stretches */}
             <div ref={photoRef} className="absolute inset-0">
+              {/* a layer is rendered for every scene so the cross-fade indices
+                  stay aligned; a division still awaiting its shoot simply has
+                  an empty layer, and the artifact's own gradient shows through */}
               {services.map((service, i) => (
                 <div
                   key={service.slug}
                   data-artifact-photo=""
                   className={`absolute inset-0 ${i === 0 ? '' : 'opacity-0'}`}
                 >
-                  <Image src={service.image} alt="" fill sizes={PHOTO_SIZES} className="object-cover" />
+                  {service.image && (
+                    <Image
+                      src={service.image}
+                      alt=""
+                      fill
+                      sizes={PHOTO_SIZES}
+                      quality={PHOTO_QUALITY}
+                      className="object-cover"
+                    />
+                  )}
                 </div>
               ))}
             </div>
@@ -315,15 +354,22 @@ export function ServiceScenes() {
                   {service.name}
                 </p>
                 {/* mobile-only visual — the artifact is desktop-only, so the
-                    scene carries its own photograph in the same slot */}
-                <div className="relative mt-2 aspect-[16/10] w-full overflow-hidden rounded-xl lg:hidden">
-                  <Image
-                    src={service.image}
-                    alt={service.imageAlt}
-                    fill
-                    sizes={PHOTO_SIZES}
-                    className="object-cover"
-                  />
+                    scene carries its own photograph in the same slot, falling
+                    back to that scene's gradient until the shoot happens */}
+                <div
+                  className="relative mt-2 aspect-[16/10] w-full overflow-hidden rounded-xl lg:hidden"
+                  style={service.image ? undefined : { backgroundImage: GRADIENTS[i] }}
+                >
+                  {service.image && (
+                    <Image
+                      src={service.image}
+                      alt={service.imageAlt ?? ''}
+                      fill
+                      sizes={PHOTO_SIZES}
+                      quality={PHOTO_QUALITY}
+                      className="object-cover"
+                    />
+                  )}
                 </div>
                 <div className="mt-2 overflow-hidden">
                   <h3 data-scene-headline="" className="t-h1 ondark-heading will-change-transform">

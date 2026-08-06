@@ -13,7 +13,7 @@ import type { HubServiceCard } from '@/types/services-hub';
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * The interactive services grid — six editorial cards, each carrying its own
+ * The interactive services grid — seven editorial cards, each carrying its own
  * colour identity and its own artwork. Hover (or keyboard focus) runs that
  * division's animation; on touch devices, where there is no hover, the card
  * plays once as it scrolls into view so nothing is hidden from those visitors.
@@ -21,7 +21,7 @@ gsap.registerPlugin(ScrollTrigger);
  * The accent is passed down as a CSS custom property so the card's whole
  * hover state — border, glow, numeral, arrow — retunes from one value.
  */
-function ServiceCard({ card }: { card: HubServiceCard }) {
+function ServiceCard({ card, className }: { card: HubServiceCard; className?: string }) {
   const [active, setActive] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -40,7 +40,11 @@ function ServiceCard({ card }: { card: HubServiceCard }) {
   }, []);
 
   return (
-    <div ref={ref} style={{ '--accent': card.accent.base, '--accent-glow': card.accent.glow } as CSSProperties}>
+    <div
+      ref={ref}
+      className={className}
+      style={{ '--accent': card.accent.base, '--accent-glow': card.accent.glow } as CSSProperties}
+    >
       <Link
         href={`/services/${card.slug}`}
         onMouseEnter={() => setActive(true)}
@@ -132,8 +136,16 @@ export function HubServicesGrid({
         </div>
 
         <Reveal stagger="cards" className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {cards.map((card) => (
-            <ServiceCard key={card.slug} card={card} />
+          {cards.map((card, i) => (
+            <ServiceCard
+              key={card.slug}
+              card={card}
+              /* a three-track final row carrying one card is centred rather
+                 than left hanging under the first column */
+              className={
+                i === cards.length - 1 && cards.length % 3 === 1 ? 'lg:col-start-2' : undefined
+              }
+            />
           ))}
         </Reveal>
       </Container>

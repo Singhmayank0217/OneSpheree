@@ -1,11 +1,12 @@
-/** The six OneSpheree business verticals — the canonical service list. */
+/** The seven OneSpheree business verticals — the canonical service list. */
 export type PortfolioService =
   | 'Digital Marketing'
   | 'Fire Safety'
   | 'Due Diligence'
   | 'E-Commerce'
   | 'Manpower Solutions'
-  | 'Sales & Consulting';
+  | 'Sales & Consulting'
+  | 'Financial & Compliance Services';
 
 export type PortfolioStatus = 'Ongoing' | 'Completed';
 

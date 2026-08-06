@@ -9,9 +9,10 @@ gsap.registerPlugin(ScrollTrigger);
 /**
  * The hub's connected ecosystem — the hero artwork, built only for this page.
  *
- * A central OneSpheree hub, whose aperture is divided into six arc segments
- * carrying the divisions' own colours, is wired to six division modules on a
- * fixed hexagonal framework. The connection paths EXPAND ORGANICALLY: over a
+ * A central OneSpheree hub, whose aperture is divided into one arc segment per
+ * division carrying that division's own colour, is wired to the division
+ * modules on a fixed polygonal framework. The connection paths EXPAND
+ * ORGANICALLY: over a
  * persistent hairline, a live growth path reaches out from the hub and draws
  * back on its own rhythm, sprouting short branch spurs as it goes, while
  * glowing particles travel continuously between the hub and every division.
@@ -29,16 +30,20 @@ gsap.registerPlugin(ScrollTrigger);
  */
 
 const CENTRE = 190;
+const DIVISIONS = 7;
+/** the framework's vertex bearings — one per division, first one due north */
+const BEARINGS = Array.from({ length: DIVISIONS }, (_, i) => -90 + (i * 360) / DIVISIONS);
 const r2 = (n: number) => Math.round(n * 100) / 100;
 
 /** module centre + connector endpoints (inner = hub side, outer = module side) */
 const NODES = [
   { cx: 190, cy: 54, ix: 190, iy: 118, ox: 190, oy: 80 },
-  { cx: 307.78, cy: 122, ix: 252.35, iy: 154, ox: 285.26, oy: 135 },
-  { cx: 307.78, cy: 258, ix: 252.35, iy: 226, ox: 285.26, oy: 245 },
-  { cx: 190, cy: 326, ix: 190, iy: 262, ox: 190, oy: 300 },
-  { cx: 72.22, cy: 258, ix: 127.65, iy: 226, ox: 94.74, oy: 245 },
-  { cx: 72.22, cy: 122, ix: 127.65, iy: 154, ox: 94.74, oy: 135 },
+  { cx: 296.33, cy: 105.21, ix: 246.29, iy: 145.11, ox: 276, oy: 121.42 },
+  { cx: 322.59, cy: 220.26, ix: 260.19, iy: 206.02, ox: 297.24, oy: 214.48 },
+  { cx: 249.01, cy: 312.53, ix: 221.24, iy: 254.87, ox: 237.73, oy: 289.11 },
+  { cx: 130.99, cy: 312.53, ix: 158.76, iy: 254.87, ox: 142.27, oy: 289.11 },
+  { cx: 57.41, cy: 220.26, ix: 119.81, iy: 206.02, ox: 82.76, oy: 214.48 },
+  { cx: 83.67, cy: 105.21, ix: 133.71, iy: 145.11, ox: 104, oy: 121.42 },
 ];
 
 /**
@@ -46,7 +51,7 @@ const NODES = [
  * offshoots that make the network read as grown rather than drawn. Computed
  * once at module scope and rounded, never at render time.
  */
-const SPURS = [-90, -30, 30, 90, 150, 210].flatMap((deg, i) => {
+const SPURS = BEARINGS.flatMap((deg, i) => {
   const a = (deg * Math.PI) / 180;
   const ux = Math.cos(a);
   const uy = Math.sin(a);
@@ -59,17 +64,19 @@ const SPURS = [-90, -30, 30, 90, 150, 210].flatMap((deg, i) => {
   return [mk(86, 15), mk(99, -12)];
 });
 
-/** the six 52° segments of the hub aperture, one per division */
+/** the seven 43.43° segments of the hub aperture, one per division (8° gaps) */
 const ARCS = [
-  'M161.07 130.68A66 66 0 0 1 218.93 130.68',
-  'M226.91 135.29A66 66 0 0 1 255.84 185.39',
-  'M255.84 194.61A66 66 0 0 1 226.91 244.71',
-  'M218.93 249.32A66 66 0 0 1 161.07 249.32',
-  'M153.09 244.71A66 66 0 0 1 124.16 194.61',
-  'M124.16 185.39A66 66 0 0 1 153.09 135.29',
+  'M165.58 128.68A66 66 0 0 1 214.42 128.68',
+  'M222.71 132.68A66 66 0 0 1 253.16 170.86',
+  'M255.21 179.84A66 66 0 0 1 244.35 227.45',
+  'M238.60 234.65A66 66 0 0 1 194.60 255.84',
+  'M185.40 255.84A66 66 0 0 1 141.40 234.65',
+  'M135.65 227.45A66 66 0 0 1 124.79 179.84',
+  'M126.84 170.86A66 66 0 0 1 157.29 132.68',
 ];
 
-const HEX = 'M190 54L307.78 122L307.78 258L190 326L72.22 258L72.22 122Z';
+const FRAME =
+  'M190 54L296.33 105.21L322.59 220.26L249.01 312.53L130.99 312.53L57.41 220.26L83.67 105.21Z';
 
 /** 18×18 division glyphs, drawn for this diagram (stroked, no fills) */
 const GLYPHS = [
@@ -85,6 +92,8 @@ const GLYPHS = [
   'M9 1.9a2 2 0 100 4 2 2 0 100-4zM3.4 11.4a2 2 0 100 4 2 2 0 100-4zM14.6 11.4a2 2 0 100 4 2 2 0 100-4zM9 6.2L4.6 11M9 6.2l4.4 4.8',
   // sales & consulting — target
   'M9 1.6a7.4 7.4 0 100 14.8 7.4 7.4 0 000-14.8zM9 5.8a3.2 3.2 0 100 6.4 3.2 3.2 0 000-6.4z',
+  // financial & compliance — balance scale
+  'M9 3.4v11.4M5.8 15.4h6.4M3.4 6.3h11.2M3.4 6.3L1.6 10.7h3.6zM14.6 6.3l-1.8 4.4h3.6z',
 ];
 
 export function HubEcosystem({ className }: { className?: string }) {
@@ -247,7 +256,7 @@ export function HubEcosystem({ className }: { className?: string }) {
       fill="none"
       className={className}
       role="img"
-      aria-label="The six OneSpheree divisions connected around a central hub"
+      aria-label="The seven OneSpheree divisions connected around a central hub"
     >
       <defs>
         <radialGradient id="hub-core-glow" cx="50%" cy="50%" r="50%">
@@ -272,7 +281,7 @@ export function HubEcosystem({ className }: { className?: string }) {
 
       {/* ── near depth layer: the hub and the framework ── */}
       <g data-eco-near="">
-        {/* the aperture — six segments, one per division */}
+        {/* the aperture — one segment per division */}
         <g>
           <circle data-eco-pulse="" cx="190" cy="190" r="66" stroke="var(--violet-400)" strokeOpacity=".35" opacity=".5" />
           {ARCS.map((d, i) => (
@@ -309,7 +318,7 @@ export function HubEcosystem({ className }: { className?: string }) {
         {/* the framework — fixed, breathing, growing outward */}
         <g data-eco-field="">
           <g data-eco-spin="">
-            <path data-eco-hex="" d={HEX} stroke="rgba(255,255,255,.1)" strokeWidth="1.2" pathLength={100} strokeDasharray="100" />
+            <path data-eco-hex="" d={FRAME} stroke="rgba(255,255,255,.1)" strokeWidth="1.2" pathLength={100} strokeDasharray="100" />
 
             {NODES.map((n, i) => (
               <g key={`conn-${cards[i].slug}`}>
