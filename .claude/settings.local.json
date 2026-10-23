@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(echo \"remaining: $?\")",
+      "Bash(ls config *)",
+      "Bash(ls app/services)",
+      "Bash(ls app/sitemap.ts app/robots.ts)",
+      "Bash(mkdir -p public/loader components/loader)",
+      "Bash(cp \"fable-loader/assets/onespheree-logo.png\" \"fable-loader/assets/onespheree-logo-light.png\" public/loader/)",
+      "Bash(node -e ' *)",
+      "Bash(mkdir -p app/services/e-commerce)",
+      "Bash(mv app/services/ecommerce/page.tsx app/services/e-commerce/page.tsx)",
+      "Bash(rmdir app/services/ecommerce)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:63422/services/e-commerce)",
+      "PowerShell(npx tsc --noEmit -p tsconfig.json)",
+      "PowerShell(npx eslint app/services/sales-consulting/page.tsx components/services/StrategyIllustration.tsx components/services/SalesStrategySection.tsx components/services/BusinessConsultingSection.tsx components/services/MarketExpansionSection.tsx data/service-pages/sales-consulting.ts)",
+      "Bash(awk '/^  return \\\\\\(/,0' components/services/PayrollSection.tsx)",
+      "Bash(awk '/^  return \\\\\\(/,0' components/services/TrainingSection.tsx)",
+      "Bash(awk '/^  return \\\\\\(/,0' components/services/RpoSection.tsx)",
+      "Bash(awk '/^  return \\\\\\(/,0' components/services/WorkforceMgmtSection.tsx)",
+      "Bash(node -p \"require\\('./node_modules/gsap/package.json'\\).version\")",
+      "PowerShell(npm run build 2>&1)",
+      "Bash(python -)",
+      "Bash(npx next *)",
+      "Bash(awk 'NR>=19 && NR<=33' onespheree-project.md)",
+      "Bash(grep -o -E '\\(LESSON|Debug gotcha|GOTCHA\\)[^*]{0,700}' onespheree-project.md)",
+      "Bash(grep -o -E 'GOTCHA[S]?\\( \\\\\\(critical\\\\\\)| CONFIRMED[^:]*| this pass| \\\\\\(verified by measurement, not inference\\\\\\)\\)?:.{0,1400}' onespheree-project.md)",
+      "Bash(node -e \"console.log\\(require\\('gsap/package.json'\\).version\\)\")",
+      "Bash(sort -u -t'>' -k2)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/contact --max-time 240)",
+      "Bash(npx prettier *)",
+      "PowerShell(Stop-Process -Id 17872,24152,10260 -Force -ErrorAction SilentlyContinue; Start-Sleep -Seconds 2; cd \"D:\\\\Working Codes\\\\Onespheree\"; Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue; \\(Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue | Measure-Object\\).Count)",
+      "Bash(sed -i 's|across all six verticals — digital marketing, fire safety, due diligence, e-commerce, manpower solutions and sales \\\\& consulting\\\\.|across all seven verticals — digital marketing, fire safety, due diligence, e-commerce, manpower solutions, sales \\\\& consulting and financial \\\\& compliance services.|' app/portfolio/page.tsx)",
+      "Bash(sed -i 's|product photography across all six verticals\\\\.|product photography across all seven verticals.|' components/gallery/GalleryHero.tsx)",
+      "Bash(sed -i 's|projects across all six OneSpheree|projects across all seven OneSpheree|' components/portfolio/PortfolioHero.tsx)",
+      "Bash(sed -i 's|the six practices as cards|the seven practices as cards|' app/about/page.tsx)",
+      "Bash(sed -i 's|the six practices our people came from|the seven practices our people came from|' components/about/AboutExpertise.tsx)",
+      "Bash(curl -s http://localhost:3000/services)"
+    ]
+  }
+}

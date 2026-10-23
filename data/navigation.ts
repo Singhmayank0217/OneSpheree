@@ -39,6 +39,7 @@ export const footerNav = {
     { label: 'Financial & Compliance Services', href: '/services/financial-compliance' },
   ],
   explore: [
+    { label: 'SmartKarobar', href: '/smartkarobar' },
     { label: 'Work', href: '/work' },
     { label: 'Portfolio', href: '/portfolio' },
   ],

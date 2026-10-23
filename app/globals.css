@@ -213,6 +213,26 @@
 --gradient-brand-soft:linear-gradient(135deg,var(--violet-50) 0%,var(--blue-50) 100%);
 }
 
+/* ── SmartKarobar SaaS product page theme — Deep Navy, Royal Blue & Cyan ──
+   Dedicated theme for SmartKarobar: crisp white canvas, deep navy (#0B132B /
+   #0F172A) headers & accents, royal blue (#1D4ED8) primary, and vibrant
+   cyan (#06B6D4) secondary. Retunes primary/secondary tokens for all shared DS
+   components, with surfaces optimized for a clean, modern SaaS light appearance. */
+.smartkarobar-theme{
+--violet-50:#EFF6FF;--violet-100:#DBEAFE;--violet-200:#BFDBFE;--violet-300:#93C5FD;--violet-400:#60A5FA;--violet-500:#1D4ED8;--violet-600:#1E40AF;--violet-700:#172554;--violet-900:#0B132B;
+--blue-50:#ECFEFF;--blue-100:#CFFAFE;--blue-200:#A5F3FC;--blue-300:#67E8F9;--blue-400:#22D3EE;--blue-500:#06B6D4;--blue-600:#0891B2;--blue-700:#0E7490;
+--color-primary:#1D4ED8;--color-primary-hover:#1E40AF;--color-primary-active:#172554;
+--color-primary-soft:#EFF6FF;--color-primary-soft-hover:#DBEAFE;
+--color-secondary:#0891B2;--color-secondary-hover:#0E7490;--color-secondary-soft:#ECFEFF;
+--text-link:#1D4ED8;--text-link-hover:#1E40AF;
+--border-focus:#1D4ED8;
+--focus-ring:0 0 0 3px rgba(29,78,216,.3);
+--color-selection-bg:#DBEAFE;--color-selection-text:#172554;
+--gradient-brand:linear-gradient(135deg,#0F172A 0%,#1D4ED8 55%,#06B6D4 100%);
+--gradient-brand-soft:linear-gradient(135deg,#FFFFFF 0%,#F0F9FF 100%);
+--surface-canvas:#FFFFFF;--surface-card:#FFFFFF;
+}
+
 *{box-sizing:border-box}
 html{scroll-behavior:auto}
 html.lenis,html.lenis body{height:auto}
