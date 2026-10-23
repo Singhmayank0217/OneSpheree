@@ -22,7 +22,7 @@ export function SmartKarobarListingFeature() {
 
         {/* 5-Step Visual Workflow Rail */}
         <div className="mt-12">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid gap-3.5 sm:gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
             {listingWorkflow.steps.map((item, idx) => (
               <div
                 key={item.step}
@@ -30,7 +30,7 @@ export function SmartKarobarListingFeature() {
               >
                 <div>
                   <div className="flex items-center justify-between">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white shrink-0">
                       {item.step}
                     </span>
                     {idx < 4 && (
@@ -56,7 +56,7 @@ export function SmartKarobarListingFeature() {
           {/* Card 1: Channel-Specific Schema Adaptations */}
           <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-5 sm:p-6">
             <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 text-blue-700">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 text-blue-700 shrink-0">
                 <Icon name="sliders" size={16} />
               </span>
               <h3 className="text-base font-bold text-slate-900 sm:text-lg">
@@ -89,7 +89,7 @@ export function SmartKarobarListingFeature() {
           {/* Card 2: Catalog Data vs External Publication Status */}
           <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-5 sm:p-6">
             <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-cyan-100 text-cyan-700">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-cyan-100 text-cyan-700 shrink-0">
                 <Icon name="fileCheck" size={16} />
               </span>
               <h3 className="text-base font-bold text-slate-900 sm:text-lg">
@@ -100,21 +100,21 @@ export function SmartKarobarListingFeature() {
               SmartKarobar keeps a clear distinction between your master product catalog and live third-party listing states:
             </p>
             <div className="mt-4 space-y-2 text-xs">
-              <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-white p-2.5">
+              <div className="flex flex-wrap items-center justify-between gap-1.5 rounded-lg border border-slate-200 bg-white p-2.5">
                 <span className="font-semibold text-slate-800">1. Master Draft</span>
-                <span className="rounded bg-slate-100 px-2 py-0.5 text-[11px] text-slate-600">Stored Locally</span>
+                <span className="rounded bg-slate-100 px-2 py-0.5 text-[11px] text-slate-600 shrink-0">Stored Locally</span>
               </div>
-              <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-white p-2.5">
+              <div className="flex flex-wrap items-center justify-between gap-1.5 rounded-lg border border-slate-200 bg-white p-2.5">
                 <span className="font-semibold text-slate-800">2. Schema Pre-Validation</span>
-                <span className="rounded bg-blue-50 px-2 py-0.5 text-[11px] text-blue-700 font-semibold">Rules Checked</span>
+                <span className="rounded bg-blue-50 px-2 py-0.5 text-[11px] text-blue-700 font-semibold shrink-0">Rules Checked</span>
               </div>
-              <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-white p-2.5">
+              <div className="flex flex-wrap items-center justify-between gap-1.5 rounded-lg border border-slate-200 bg-white p-2.5">
                 <span className="font-semibold text-slate-800">3. Feed Submission</span>
-                <span className="rounded bg-amber-50 px-2 py-0.5 text-[11px] text-amber-700 font-semibold">Pending Marketplace Review</span>
+                <span className="rounded bg-amber-50 px-2 py-0.5 text-[11px] text-amber-700 font-semibold shrink-0">Pending Marketplace Review</span>
               </div>
-              <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-white p-2.5">
+              <div className="flex flex-wrap items-center justify-between gap-1.5 rounded-lg border border-slate-200 bg-white p-2.5">
                 <span className="font-semibold text-slate-800">4. Live Channel Listing</span>
-                <span className="rounded bg-emerald-50 px-2 py-0.5 text-[11px] text-emerald-700 font-semibold">Active with ASIN/FSN</span>
+                <span className="rounded bg-emerald-50 px-2 py-0.5 text-[11px] text-emerald-700 font-semibold shrink-0">Active with ASIN/FSN</span>
               </div>
             </div>
           </div>

@@ -25,12 +25,12 @@ export function SmartKarobarCta() {
             Consolidate your product listings, inventory synchronization, and order workflows across Amazon, Flipkart, Meesho, and your web storefront into a single automated dashboard.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <Button
               href="/contact?subject=SmartKarobar+Workspace+Inquiry"
               size="lg"
               iconRight="arrowRight"
-              className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/30"
+              className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/30"
             >
               Get Started with SmartKarobar
             </Button>
@@ -38,7 +38,7 @@ export function SmartKarobarCta() {
               href="/contact"
               variant="outlineDark"
               size="lg"
-              className="border-white/30 hover:bg-white/10 text-white"
+              className="w-full sm:w-auto border-white/30 hover:bg-white/10 text-white"
             >
               Contact Onespheree
             </Button>

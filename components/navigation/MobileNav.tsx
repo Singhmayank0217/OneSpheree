@@ -33,7 +33,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
       aria-label="Navigation"
       aria-hidden={!open}
       className={cn(
-        'fixed inset-0 z-modal flex flex-col bg-dark-tint transition-[opacity,visibility] duration-[var(--duration-slow)] ease-[var(--ease-out)] lg:hidden',
+        'fixed inset-0 z-modal flex flex-col bg-dark-tint overflow-y-auto transition-[opacity,visibility] duration-[var(--duration-slow)] ease-[var(--ease-out)] lg:hidden',
         open ? 'visible opacity-100' : 'invisible opacity-0 pointer-events-none'
       )}
     >

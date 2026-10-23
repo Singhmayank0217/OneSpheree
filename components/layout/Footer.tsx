@@ -15,7 +15,7 @@ export function Footer() {
   return (
     <footer className="bg-dark-tint text-ondark">
       <Container className="pt-16 pb-6">
-        <div className="grid gap-8 lg:grid-cols-[1.4fr_repeat(3,1fr)]">
+        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div className="flex flex-col items-start gap-3">
             <Link href="/" aria-label="OneSpheree home" className="flex items-center gap-[10px] hover:no-underline">
               <Image src="/logos/onespheree-mark.png" alt="" width={40} height={40} />
@@ -42,7 +42,7 @@ export function Footer() {
           <p className="t-caption text-ondark-muted">
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-x-4 gap-y-1">
             {footerNav.legal.map((l) => (
               <Link
                 key={l.href}

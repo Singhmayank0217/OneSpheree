@@ -27,18 +27,18 @@ export function SmartKarobarFaq() {
               key={idx}
               className="group rounded-xl border border-slate-200 bg-white p-4 sm:p-5 shadow-2xs open:border-blue-300 open:shadow-xs transition-colors"
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-slate-900 text-sm sm:text-base select-none">
-                <span className="flex items-center gap-2">
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-50 text-[11px] font-bold text-blue-700">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 sm:gap-4 font-bold text-slate-900 text-sm sm:text-base select-none py-0.5">
+                <span className="flex items-start gap-2.5 min-w-0">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-50 text-[11px] font-bold text-blue-700 mt-0.5">
                     {idx + 1}
                   </span>
-                  <span>{item.q}</span>
+                  <span className="break-words leading-snug">{item.q}</span>
                 </span>
                 <span className="ml-2 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-transform duration-200 group-open:rotate-180 group-open:bg-blue-100 group-open:text-blue-700">
                   <Icon name="chevronDown" size={14} />
                 </span>
               </summary>
-              <div className="mt-3.5 pt-3.5 border-t border-slate-100 text-xs text-slate-600 sm:text-sm leading-relaxed">
+              <div className="mt-3.5 pt-3.5 border-t border-slate-100 text-xs text-slate-600 sm:text-sm leading-relaxed break-words">
                 {item.a}
               </div>
             </details>

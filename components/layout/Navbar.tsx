@@ -48,7 +48,11 @@ export function Navbar({ dark }: { dark?: boolean }) {
               width={36}
               height={36}
               priority
-              className={cn('transition-transform duration-[var(--duration-slow)]', scrolled && 'scale-90')}
+              className={cn(
+                'transition-transform duration-[var(--duration-slow)]',
+                scrolled && 'scale-90',
+                !onDark && 'brightness-0'
+              )}
             />
             <span
               className={cn(

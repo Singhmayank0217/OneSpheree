@@ -40,18 +40,19 @@ export function SmartKarobarPricing() {
         </div>
 
         {/* Pricing Cards Grid */}
-        <div className="mt-10 grid gap-6 lg:grid-cols-3 items-stretch">
-          {pricing.plans.map((plan: PricingPlan) => {
+        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+          {pricing.plans.map((plan: PricingPlan, pIdx: number) => {
             const isGrowth = plan.highlighted;
+            const isLastOnTablet = pIdx === 2;
 
             return (
               <div
                 key={plan.id}
-                className={`relative flex flex-col justify-between rounded-2xl p-6 sm:p-8 transition-all ${
+                className={`relative flex flex-col justify-between rounded-2xl p-5 sm:p-8 transition-all border border-slate-200 bg-white ${
                   isGrowth
-                    ? 'border-2 border-blue-600 bg-white shadow-xl lg:-translate-y-2'
-                    : 'border border-slate-200 bg-white shadow-xs'
-                }`}
+                    ? 'ring-2 ring-blue-600 shadow-xl lg:-translate-y-2'
+                    : 'shadow-xs'
+                } ${isLastOnTablet ? 'md:col-span-2 lg:col-span-1 md:max-w-md md:mx-auto lg:max-w-none w-full' : ''}`}
               >
                 {isGrowth && (
                   <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-blue-600 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-white shadow-xs">
@@ -80,13 +81,13 @@ export function SmartKarobarPricing() {
                   </p>
 
                   <div className="mt-5 rounded-lg bg-slate-50 p-3 border border-slate-100 space-y-1 text-xs">
-                    <div className="flex items-center justify-between text-slate-700 font-medium">
-                      <span>Catalogue Allowance:</span>
-                      <strong className="text-slate-900">{plan.skuLimit}</strong>
+                    <div className="flex items-start justify-between gap-2 text-slate-700 font-medium">
+                      <span className="shrink-0 text-slate-600">Catalogue Allowance:</span>
+                      <strong className="text-slate-900 text-right">{plan.skuLimit}</strong>
                     </div>
-                    <div className="flex items-center justify-between text-slate-700 font-medium">
-                      <span>Channel Limit:</span>
-                      <strong className="text-slate-900">{plan.channelLimit}</strong>
+                    <div className="flex items-start justify-between gap-2 text-slate-700 font-medium">
+                      <span className="shrink-0 text-slate-600">Channel Limit:</span>
+                      <strong className="text-slate-900 text-right">{plan.channelLimit}</strong>
                     </div>
                   </div>
 
@@ -140,47 +141,57 @@ export function SmartKarobarPricing() {
         </div>
 
         {/* Pricing Disclosure & GST treatment note */}
-        <div className="mt-8 text-center text-xs text-slate-500 max-w-2xl mx-auto">
+        <div className="mt-8 text-center text-xs text-slate-500 max-w-2xl mx-auto px-2">
           <p>{pricing.taxNote}</p>
         </div>
 
         {/* Plan Comparison Matrix Table */}
-        <div className="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xs">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-100 text-blue-700">
+        <div className="mt-12 rounded-2xl border border-slate-200 bg-white p-4 sm:p-8 shadow-xs">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-100 text-blue-700 shrink-0">
               <Icon name="layers" size={16} />
             </span>
             <h3 className="text-base font-bold text-slate-900 sm:text-lg">
               Plan Entitlement &amp; Feature Comparison
             </h3>
           </div>
-          <p className="text-xs text-slate-600 mb-6">
+          <p className="text-xs text-slate-600 mb-4 sm:mb-6">
             Compare subscription channel limits, SKU caps, and included operational capabilities side by side.
           </p>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs border-collapse">
+          {/* Mobile swipe hint */}
+          <div className="sm:hidden mb-2.5 text-right text-[11px] text-blue-600 font-medium flex items-center justify-end gap-1">
+            <Icon name="arrowRight" size={12} />
+            <span>Scroll horizontally to compare all plans</span>
+          </div>
+
+          <div className="overflow-x-auto rounded-xl border border-slate-200">
+            <table className="w-full min-w-[560px] text-left text-xs border-collapse bg-white">
               <thead>
-                <tr className="border-b border-slate-200 bg-slate-50/80 text-slate-600 font-semibold uppercase tracking-wider">
-                  <th className="py-3 px-4">Feature / Capability</th>
-                  <th className="py-3 px-4">Basic Plan</th>
-                  <th className="py-3 px-4 bg-blue-50/50 text-blue-900">Growth Plan</th>
-                  <th className="py-3 px-4">Premium Plan</th>
+                <tr className="border-b border-slate-200 bg-slate-50/90 text-slate-700 font-semibold uppercase tracking-wider">
+                  <th className="py-3 px-3.5 sm:px-4 sticky left-0 bg-slate-50 z-10 shadow-[2px_0_4px_rgba(0,0,0,0.04)]">
+                    Feature / Capability
+                  </th>
+                  <th className="py-3 px-3.5 sm:px-4">Basic Plan</th>
+                  <th className="py-3 px-3.5 sm:px-4 bg-blue-50/50 text-blue-900">Growth Plan</th>
+                  <th className="py-3 px-3.5 sm:px-4">Premium Plan</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {pricing.comparison.map((row, rIdx) => (
                   <tr key={rIdx} className="hover:bg-slate-50/60">
-                    <td className="py-3 px-4 font-semibold text-slate-800">{row.feature}</td>
-                    <td className="py-3 px-4 text-slate-600">{row.basic}</td>
-                    <td className="py-3 px-4 font-medium text-blue-950 bg-blue-50/20">{row.growth}</td>
-                    <td className="py-3 px-4 text-slate-900 font-medium">{row.premium}</td>
+                    <td className="py-3 px-3.5 sm:px-4 font-semibold text-slate-800 sticky left-0 bg-white z-10 shadow-[2px_0_4px_rgba(0,0,0,0.04)]">
+                      {row.feature}
+                    </td>
+                    <td className="py-3 px-3.5 sm:px-4 text-slate-600">{row.basic}</td>
+                    <td className="py-3 px-3.5 sm:px-4 font-medium text-blue-950 bg-blue-50/20">{row.growth}</td>
+                    <td className="py-3 px-3.5 sm:px-4 text-slate-900 font-medium">{row.premium}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <p className="mt-4 text-[11px] text-slate-500">
+          <p className="mt-4 text-[11px] text-slate-500 leading-normal">
             * Sales channel limit refers exclusively to the 4 supported channels (Amazon, Flipkart, Meesho, and own website). Meta Ads and WhatsApp are separate service integrations that do not consume sales-channel slots.
           </p>
         </div>
