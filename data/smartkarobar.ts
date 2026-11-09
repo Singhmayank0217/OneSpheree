@@ -48,7 +48,7 @@ export const smartkarobarData = {
     headline: 'Run Your E-commerce Business Smarter, from One Dashboard.',
     subheadline:
       'SmartKarobar helps online sellers simplify product listings, synchronize inventory, manage orders, organize advertising workflows, and access AI-powered business insights through one connected platform.',
-    canonicalUrl: 'https://onespheree.com/smartkarobar',
+    canonicalUrl: 'https://www.onespheree.com/smartkarobar',
   },
 
   integrations: [
