@@ -9,9 +9,9 @@ import { contactPage } from '@/data/contact';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata = buildMetadata({
-  title: 'Contact Us',
+  title: 'Contact OneSpheree — Get in Touch With Our Team',
   description:
-    "Talk to OneSpheree about strategic consulting, digital transformation, compliance, workforce solutions or business growth. Send an enquiry, reach the right practice directly, or find the Kolkata head office — every enquiry answered within one business day.",
+    'Get in touch with OneSpheree for digital marketing, fire safety, due diligence, e-commerce, manpower, sales consulting, or financial compliance. Enquiries answered within one business day.',
   path: '/contact',
 });
 

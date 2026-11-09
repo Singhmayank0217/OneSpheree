@@ -6,7 +6,7 @@ export interface NavItem {
 }
 
 /** Routes that open on a dark hero — the transparent navbar uses on-dark text there. */
-export const darkHeroRoutes = ['/', '/about', '/contact', '/services', '/services/digital-marketing', '/services/due-diligence', '/services/fire-safety', '/services/e-commerce', '/services/manpower-solutions', '/services/sales-consulting', '/services/financial-compliance'];
+export const darkHeroRoutes = ['/', '/about', '/contact', '/services', '/services/digital-marketing', '/services/due-diligence', '/services/fire-safety', '/services/e-commerce', '/services/manpower-solutions', '/services/sales-consulting', '/services/financial-compliance', '/blog'];
 
 /**
  * Primary navigation. Home is the logo, Contact is the CTA button — so the
@@ -22,6 +22,7 @@ export const primaryNav: NavItem[] = [
   { label: 'Services', href: '/services', mega: true },
   { label: 'Work', href: '/work' },
   { label: 'Portfolio', href: '/portfolio' },
+  { label: 'Insights', href: '/blog' },
 ];
 
 export const footerNav = {
@@ -40,11 +41,9 @@ export const footerNav = {
   ],
   explore: [
     { label: 'SmartKarobar', href: '/smartkarobar' },
+    { label: 'Insights', href: '/blog' },
     { label: 'Work', href: '/work' },
     { label: 'Portfolio', href: '/portfolio' },
   ],
-  legal: [
-    { label: 'Privacy Policy', href: '/privacy' },
-    { label: 'Terms', href: '/terms' },
-  ],
+  legal: [] as { label: string; href: string }[],
 };

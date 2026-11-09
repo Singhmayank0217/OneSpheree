@@ -9,9 +9,9 @@ import { servicesHub } from '@/data/services-hub';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata = buildMetadata({
-  title: 'Services',
+  title: 'Business Solutions & Services — OneSpheree',
   description:
-    'Business solutions built around your growth — digital marketing, due diligence, fire & safety, reselling & e-commerce, manpower solutions, sales & consulting and financial & compliance services, plus the operations, compliance, technology and growth capabilities behind them.',
+    'Seven specialist practices under one roof: digital marketing, fire safety, due diligence, e-commerce, manpower solutions, sales consulting, and financial compliance. Enterprise-grade business services from a single accountable partner.',
   path: '/services',
 });
 

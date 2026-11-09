@@ -2,7 +2,7 @@ import type { Config } from 'tailwindcss';
 
 /** Every utility maps to a Design System CSS variable — no raw values. */
 const config: Config = {
-  content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './providers/**/*.{ts,tsx}'],
+  content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './providers/**/*.{ts,tsx}', './content/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {

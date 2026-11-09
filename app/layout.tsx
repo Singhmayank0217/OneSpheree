@@ -6,7 +6,7 @@ import { HomeAtmosphere } from '@/components/home/HomeAtmosphere';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { site } from '@/config/site';
-import { organizationJsonLd } from '@/lib/seo';
+import { organizationJsonLd, websiteJsonLd } from '@/lib/seo';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600', '700', '800'], variable: '--font-inter' });
@@ -17,16 +17,31 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: { default: `${site.name} — ${site.tagline}`, template: `%s — ${site.name}` },
   description: site.description,
-  openGraph: { siteName: site.name, type: 'website', locale: 'en_US' },
+  openGraph: {
+    siteName: site.name,
+    type: 'website',
+    locale: 'en_US',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: `${site.name} — ${site.tagline}` }],
+  },
+  twitter: { card: 'summary_large_image' },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${interTight.variable} ${mono.variable}`}>
-      <body>
+      {/* suppressHydrationWarning is scoped to <body> attributes only — it does
+          not suppress warnings for any child components. It is needed because
+          browser extensions (e.g. Google Input Tools / "cz-shortcut-listen")
+          inject attributes into <body> before React's hydration pass, causing
+          a benign but noisy mismatch that has no application-side cause. */}
+      <body suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
         />
         <HomeAtmosphere />
         <SmoothScrollProvider>

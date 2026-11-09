@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 import { site } from '@/config/site';
 import { galleryProjects } from '@/data/gallery';
 import { portfolioProjects } from '@/data/portfolio';
+import { getPublishedPosts } from '@/lib/blog';
 
 const BASE = site.url; // https://www.onespheree.com
 
@@ -112,6 +113,32 @@ const portfolioPages: MetadataRoute.Sitemap = portfolioProjects.map((project) =>
   priority: 0.7,
 }));
 
+/**
+ * Dynamic /blog/[slug] entries — only published (non-draft) posts are included.
+ * The /blog listing page is included only when at least one post is published
+ * (it is noindex while empty, so there is nothing useful to crawl there).
+ */
+const publishedPosts = getPublishedPosts();
+
+const blogListingPage: MetadataRoute.Sitemap =
+  publishedPosts.length > 0
+    ? [
+        {
+          url: url('/blog'),
+          lastModified: new Date(publishedPosts[0].updatedAt ?? publishedPosts[0].publishedAt),
+          changeFrequency: 'weekly' as const,
+          priority: 0.8,
+        },
+      ]
+    : [];
+
+const blogPages: MetadataRoute.Sitemap = publishedPosts.map((post) => ({
+  url: url(`/blog/${post.slug}`),
+  lastModified: new Date(post.updatedAt ?? post.publishedAt),
+  changeFrequency: 'monthly' as const,
+  priority: 0.65,
+}));
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [...staticPages, ...workPages, ...portfolioPages];
+  return [...staticPages, ...workPages, ...portfolioPages, ...blogListingPage, ...blogPages];
 }

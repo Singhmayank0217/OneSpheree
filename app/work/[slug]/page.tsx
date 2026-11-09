@@ -6,7 +6,7 @@ import { RelatedProjects } from '@/components/gallery/RelatedProjects';
 import { NextProject } from '@/components/gallery/NextProject';
 import { galleryProjects } from '@/data/gallery';
 import { getProjectBySlug } from '@/lib/gallery';
-import { buildMetadata } from '@/lib/seo';
+import { buildMetadata, breadcrumbJsonLd } from '@/lib/seo';
 
 export function generateStaticParams() {
   return galleryProjects.map((p) => ({ slug: p.slug }));
@@ -32,8 +32,15 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const project = getProjectBySlug(slug);
   if (!project) notFound();
 
+  const breadcrumbLd = breadcrumbJsonLd([
+    { name: 'Home', href: '/' },
+    { name: 'Work', href: '/work' },
+    { name: project.title, href: `/work/${project.slug}` },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <ProjectHero project={project} />
       <ProjectGallery project={project} />
       <RelatedProjects project={project} />

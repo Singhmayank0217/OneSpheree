@@ -3,9 +3,9 @@ import { GalleryExplorer } from '@/components/gallery/GalleryExplorer';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata = buildMetadata({
-  title: 'Work',
+  title: 'Our Work — Client Projects & Case Studies',
   description:
-    'A cross-disciplinary portfolio from OneSpheree — marketing, due diligence, fire safety, e-commerce and workforce solutions delivered across every industry.',
+    'Browse OneSpheree\'s project gallery — real-world engagements across digital marketing, fire safety, due diligence, e-commerce, manpower solutions, sales consulting, and financial compliance delivered for clients worldwide.',
   path: '/work',
 });
 

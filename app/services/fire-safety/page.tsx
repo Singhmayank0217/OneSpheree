@@ -14,12 +14,13 @@ import { ProcessSection } from '@/components/services/ProcessSection';
 import { OutcomesSection } from '@/components/services/OutcomesSection';
 import { ServiceCtaSection } from '@/components/services/ServiceCtaSection';
 import { fireSafetyPage } from '@/data/service-pages/fire-safety';
-import { buildMetadata } from '@/lib/seo';
+import { buildMetadata, serviceJsonLd, breadcrumbJsonLd } from '@/lib/seo';
+import { site } from '@/config/site';
 
 export const metadata = buildMetadata({
-  title: 'Fire & Safety',
+  title: 'Fire Safety Services — Detection, Suppression & Life Safety Systems',
   description:
-    'Complete fire protection and life safety solutions — detection, suppression and fire fighting systems engineered by OneSpheree.',
+    'Complete fire safety solutions from OneSpheree: fire detection systems, suppression systems, firefighting equipment, design & engineering, installation, AMC, and compliance audits for commercial and industrial facilities.',
   path: '/services/fire-safety',
 });
 
@@ -30,11 +31,27 @@ export const metadata = buildMetadata({
  * tokens to a deep fire-red + ember pair (see globals.css), so every reused
  * component retunes while surfaces stay dark charcoal.
  */
+const SERVICE_LD = serviceJsonLd({
+  name: 'Fire Safety Services',
+  description:
+    'Fire detection systems, suppression systems, firefighting equipment, design & engineering, installation, AMC, and compliance audits for commercial and industrial facilities.',
+  url: `${site.url}/services/fire-safety`,
+  serviceType: 'Fire Detection, Fire Suppression, Fire Fighting Systems, AMC, Compliance Audit',
+});
+
+const BREADCRUMB_LD = breadcrumbJsonLd([
+  { name: 'Home', href: '/' },
+  { name: 'Services', href: '/services' },
+  { name: 'Fire Safety', href: '/services/fire-safety' },
+]);
+
 export default function FireSafetyPage() {
   const { hero, overview, sections, industries, why, process, outcomes, cta } = fireSafetyPage;
   const [detection, suppression, fighting, design, installation, amc, audit] = sections;
   return (
     <div className="fire-theme">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_LD) }} />
       <ServiceHero hero={hero} visual={<FireProtectionIllustration className="aspect-square w-full" />} />
       <ServiceOverview overview={overview} />
       <DetectionSection section={detection} />

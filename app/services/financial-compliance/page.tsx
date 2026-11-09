@@ -16,12 +16,13 @@ import { FinanceBusinessOutcomes } from '@/components/financial/FinanceBusinessO
 import { FinanceFaq } from '@/components/financial/FinanceFaq';
 import { FinanceCta } from '@/components/financial/FinanceCta';
 import { financialCompliancePage } from '@/data/financial-compliance';
-import { buildMetadata } from '@/lib/seo';
+import { buildMetadata, serviceJsonLd, breadcrumbJsonLd } from '@/lib/seo';
+import { site } from '@/config/site';
 
 export const metadata = buildMetadata({
-  title: 'Financial & Compliance Services',
+  title: 'Financial & Compliance Services — Accounting, GST, Taxation & Audit',
   description:
-    'Taxation, GST, audit, accounting, ROC compliance, payroll and virtual CFO support from OneSpheree — numbers that stand up to scrutiny.',
+    'Financial and compliance services from OneSpheree: income tax, GST filing, statutory audit, payroll, ROC compliance, accounting, and virtual CFO support. Audit-ready books and accurate statutory filings.',
   path: '/services/financial-compliance',
 });
 
@@ -67,8 +68,24 @@ export default function FinancialCompliancePage() {
     faq,
     cta,
   } = financialCompliancePage;
+  const SERVICE_LD = serviceJsonLd({
+    name: 'Financial & Compliance Services',
+    description:
+      'Income tax, GST filing, statutory audit, payroll, ROC compliance, accounting, and virtual CFO support. Audit-ready books and accurate statutory filings.',
+    url: `${site.url}/services/financial-compliance`,
+    serviceType: 'Taxation, GST, Audit, Accounting, ROC Compliance, Payroll, Virtual CFO',
+  });
+
+  const BREADCRUMB_LD = breadcrumbJsonLd([
+    { name: 'Home', href: '/' },
+    { name: 'Services', href: '/services' },
+    { name: 'Financial & Compliance', href: '/services/financial-compliance' },
+  ]);
+
   return (
     <div className="fc-theme">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_LD) }} />
       <FinanceHero hero={hero} />
       <FinanceWhy content={why} />
       <FinanceCategories content={categories} />

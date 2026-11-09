@@ -17,7 +17,8 @@ import { site } from '@/config/site';
 
 export const metadata = buildMetadata({
   title: `${site.name} — ${site.tagline}`,
-  description: site.description,
+  description:
+    'OneSpheree is a multi-disciplinary business solutions company delivering digital marketing, fire safety, due diligence, e-commerce, manpower solutions, sales consulting, and financial compliance services for enterprises worldwide.',
   path: '/',
 });
 

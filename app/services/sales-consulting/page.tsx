@@ -14,12 +14,13 @@ import { ProcessSection } from '@/components/services/ProcessSection';
 import { OutcomesSection } from '@/components/services/OutcomesSection';
 import { ServiceCtaSection } from '@/components/services/ServiceCtaSection';
 import { salesConsultingPage } from '@/data/service-pages/sales-consulting';
-import { buildMetadata } from '@/lib/seo';
+import { buildMetadata, serviceJsonLd, breadcrumbJsonLd } from '@/lib/seo';
+import { site } from '@/config/site';
 
 export const metadata = buildMetadata({
-  title: 'Sales & Consulting',
+  title: 'Sales Consulting & Business Strategy Services',
   description:
-    'Driving business growth through strategy and expertise — sales strategy, business consulting and market expansion from OneSphereee.',
+    'Sales consulting and business strategy services from OneSpheree: go-to-market strategy, sales transformation, market expansion, CRM automation, business development, and revenue operations for enterprises.',
   path: '/services/sales-consulting',
 });
 
@@ -35,11 +36,27 @@ export const metadata = buildMetadata({
  * rendered through the shared blueprint sections (retuned to cyan by
  * .sc-theme) like the other service pages. The page is complete.
  */
+const SERVICE_LD = serviceJsonLd({
+  name: 'Sales Consulting & Business Strategy',
+  description:
+    'Go-to-market strategy, sales transformation, market expansion, CRM automation, business development, and revenue operations for enterprises.',
+  url: `${site.url}/services/sales-consulting`,
+  serviceType: 'Sales Strategy, Business Consulting, Market Expansion, CRM Automation, Business Development',
+});
+
+const BREADCRUMB_LD = breadcrumbJsonLd([
+  { name: 'Home', href: '/' },
+  { name: 'Services', href: '/services' },
+  { name: 'Sales & Consulting', href: '/services/sales-consulting' },
+]);
+
 export default function SalesConsultingPage() {
   const { hero, overview, sections, industries, why, process, outcomes, cta } = salesConsultingPage;
   const [salesStrategy, consulting, expansion, training, crm, bizDev, partnership] = sections;
   return (
     <div className="sc-theme">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_LD) }} />
       <ServiceHero hero={hero} visual={<StrategyIllustration className="aspect-square w-full" />} />
       <ServiceOverview overview={overview} />
       <SalesStrategySection section={salesStrategy} />

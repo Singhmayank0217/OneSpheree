@@ -43,33 +43,19 @@ export function SmartKarobarSecurityCompliance() {
           ))}
         </div>
 
-        {/* Legal & Support Navigation Links */}
+        {/* Support Navigation Links */}
         <div className="mt-12 rounded-2xl border border-slate-200 bg-slate-900 p-6 sm:p-8 text-white">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
               <h3 className="text-base font-bold sm:text-lg">
-                Compliance, Legal &amp; Seller Support Resources
+                Seller Support Resources
               </h3>
               <p className="mt-1 text-xs text-slate-400 max-w-xl leading-relaxed">
-                Review Onespheree’s data privacy frameworks, service terms, and seller onboarding support guidelines:
+                Questions about onboarding, integrations or platform usage? Contact our seller support team directly.
               </p>
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
-              <Link
-                href="/privacy"
-                className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800 px-3.5 py-2 text-xs font-semibold text-slate-200 hover:bg-slate-700 hover:text-white transition-colors"
-              >
-                <span>Privacy Policy</span>
-                <Icon name="externalLink" size={13} className="text-slate-400" />
-              </Link>
-              <Link
-                href="/terms"
-                className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800 px-3.5 py-2 text-xs font-semibold text-slate-200 hover:bg-slate-700 hover:text-white transition-colors"
-              >
-                <span>Terms of Service</span>
-                <Icon name="externalLink" size={13} className="text-slate-400" />
-              </Link>
               <Link
                 href="/contact?subject=SmartKarobar+Developer+Inquiry"
                 className="inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-3.5 py-2 text-xs font-semibold text-white hover:bg-blue-700 transition-colors"

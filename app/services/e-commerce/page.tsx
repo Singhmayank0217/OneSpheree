@@ -13,12 +13,13 @@ import { ProcessSection } from '@/components/services/ProcessSection';
 import { OutcomesSection } from '@/components/services/OutcomesSection';
 import { ServiceCtaSection } from '@/components/services/ServiceCtaSection';
 import { ecommercePage } from '@/data/service-pages/ecommerce';
-import { buildMetadata } from '@/lib/seo';
+import { buildMetadata, serviceJsonLd, breadcrumbJsonLd } from '@/lib/seo';
+import { site } from '@/config/site';
 
 export const metadata = buildMetadata({
-  title: 'Reselling & E-Commerce',
+  title: 'E-Commerce Solutions — Marketplace Management & Online Selling',
   description:
-    'Building brands that sell — marketplace management, product sourcing and product listing from OneSpheree.',
+    'End-to-end e-commerce solutions from OneSpheree: marketplace management, product sourcing, listing optimization, brand management, order fulfilment, and custom storefront development for scalable online selling.',
   path: '/services/e-commerce',
 });
 
@@ -30,11 +31,27 @@ export const metadata = buildMetadata({
  * Digital Commerce, M3 Categories/Why/Process/Outcomes/CTA — the last five
  * rendered through the shared blueprint sections like the other service pages.
  */
+const SERVICE_LD = serviceJsonLd({
+  name: 'E-Commerce Solutions',
+  description:
+    'Marketplace management, product sourcing, listing optimization, brand management, order fulfilment, and custom storefront development for scalable online selling.',
+  url: `${site.url}/services/e-commerce`,
+  serviceType: 'Marketplace Management, Product Listing, Order Fulfilment, E-Commerce Development',
+});
+
+const BREADCRUMB_LD = breadcrumbJsonLd([
+  { name: 'Home', href: '/' },
+  { name: 'Services', href: '/services' },
+  { name: 'E-Commerce', href: '/services/e-commerce' },
+]);
+
 export default function EcommercePage() {
   const { hero, overview, sections, industries, why, process, outcomes, cta } = ecommercePage;
   const [marketplace, sourcing, listing, brand, order, digital] = sections;
   return (
     <div className="ec-theme">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_LD) }} />
       <ServiceHero hero={hero} visual={<CommerceIllustration className="aspect-square w-full" />} />
       <ServiceOverview overview={overview} />
       <MarketplaceSection section={marketplace} />

@@ -28,7 +28,7 @@ export const whyEntries: WhyEntry[] = [
   {
     index: '05',
     title: 'Global standards',
-    text: 'One standard of delivery across 18 countries and every market you operate in.',
+    text: 'One standard of delivery across 3 countries and every market you operate in.',
   },
   {
     index: '06',

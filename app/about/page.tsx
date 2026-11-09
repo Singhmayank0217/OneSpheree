@@ -9,9 +9,9 @@ import { about } from '@/data/about';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata = buildMetadata({
-  title: 'About',
+  title: 'About OneSpheree — Enterprise Business Solutions Company',
   description:
-    'OneSpheree is a young business group built by professionals with years of experience across digital marketing, due diligence, fire & safety, reselling & e-commerce, manpower solutions, business consulting and financial & compliance services — one trusted partner across domains.',
+    'OneSpheree is a multi-discipline business solutions company built by senior professionals across digital marketing, fire safety, due diligence, e-commerce, manpower solutions, sales consulting, and financial compliance. One partner accountable for all seven practices.',
   path: '/about',
 });
 

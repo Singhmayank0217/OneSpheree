@@ -6,7 +6,7 @@ import { RelatedPortfolio } from '@/components/portfolio/RelatedPortfolio';
 import { NextPortfolioProject } from '@/components/portfolio/NextPortfolioProject';
 import { portfolioProjects } from '@/data/portfolio';
 import { getPortfolioBySlug } from '@/lib/portfolio';
-import { buildMetadata } from '@/lib/seo';
+import { buildMetadata, breadcrumbJsonLd } from '@/lib/seo';
 
 export function generateStaticParams() {
   return portfolioProjects.map((p) => ({ slug: p.slug }));
@@ -32,8 +32,15 @@ export default async function PortfolioProjectPage({ params }: { params: Promise
   const project = getPortfolioBySlug(slug);
   if (!project) notFound();
 
+  const breadcrumbLd = breadcrumbJsonLd([
+    { name: 'Home', href: '/' },
+    { name: 'Portfolio', href: '/portfolio' },
+    { name: project.title, href: `/portfolio/${project.slug}` },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <PortfolioProjectHero project={project} />
       <PortfolioDetail project={project} />
       <RelatedPortfolio project={project} />

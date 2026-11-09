@@ -28,7 +28,7 @@ export const servicesHub: ServicesHubContent = {
     ],
     figures: [
       { value: 7, label: 'Business divisions' },
-      { value: 120, suffix: '+', label: 'Organizations served' },
+      { value: 58, label: 'Organizations served' },
       { value: 18, label: 'Industries covered' },
       { value: 98, suffix: '%', label: 'Client retention' },
     ],

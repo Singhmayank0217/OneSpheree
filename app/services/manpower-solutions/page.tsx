@@ -14,12 +14,13 @@ import { ProcessSection } from '@/components/services/ProcessSection';
 import { OutcomesSection } from '@/components/services/OutcomesSection';
 import { ServiceCtaSection } from '@/components/services/ServiceCtaSection';
 import { manpowerPage } from '@/data/service-pages/manpower';
-import { buildMetadata } from '@/lib/seo';
+import { buildMetadata, serviceJsonLd, breadcrumbJsonLd } from '@/lib/seo';
+import { site } from '@/config/site';
 
 export const metadata = buildMetadata({
-  title: 'Manpower Solutions',
+  title: 'Manpower Solutions — Staffing, Recruitment & Workforce Services',
   description:
-    'Connecting businesses with exceptional talent — permanent staffing, contract staffing and executive search from OneSpheree.',
+    'Workforce and staffing solutions from OneSpheree: permanent staffing, contract staffing, executive search, RPO, payroll outsourcing, and workforce management. Verified talent deployed across industries and regions.',
   path: '/services/manpower-solutions',
 });
 
@@ -34,11 +35,27 @@ export const metadata = buildMetadata({
  * Process/Outcomes/Final CTA → footer, rendered through the shared blueprint
  * sections (retuned to royal blue by .mp-theme) like the other service pages.
  */
+const SERVICE_LD = serviceJsonLd({
+  name: 'Manpower Solutions',
+  description:
+    'Permanent staffing, contract staffing, executive search, RPO, payroll outsourcing, and workforce management. Verified talent deployed across industries and regions.',
+  url: `${site.url}/services/manpower-solutions`,
+  serviceType: 'Permanent Staffing, Contract Staffing, Executive Search, RPO, Payroll Outsourcing',
+});
+
+const BREADCRUMB_LD = breadcrumbJsonLd([
+  { name: 'Home', href: '/' },
+  { name: 'Services', href: '/services' },
+  { name: 'Manpower Solutions', href: '/services/manpower-solutions' },
+]);
+
 export default function ManpowerPage() {
   const { hero, overview, sections, industries, why, process, outcomes, cta } = manpowerPage;
   const [permanent, contract, executive, rpo, payroll, workforce, training] = sections;
   return (
     <div className="mp-theme">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_LD) }} />
       <ServiceHero hero={hero} visual={<WorkforceIllustration className="aspect-square w-full" />} />
       <ServiceOverview overview={overview} />
       <PermanentStaffingSection section={permanent} />

@@ -14,12 +14,13 @@ import { ProcessSection } from '@/components/services/ProcessSection';
 import { OutcomesSection } from '@/components/services/OutcomesSection';
 import { ServiceCtaSection } from '@/components/services/ServiceCtaSection';
 import { digitalMarketingPage } from '@/data/service-pages/digital-marketing';
-import { buildMetadata } from '@/lib/seo';
+import { buildMetadata, serviceJsonLd, breadcrumbJsonLd } from '@/lib/seo';
+import { site } from '@/config/site';
 
 export const metadata = buildMetadata({
-  title: 'Digital Marketing',
+  title: 'Digital Marketing Services — SEO, Performance Media & Social',
   description:
-    'Accelerating business growth through digital excellence — SEO, performance marketing and social media management from OneSpheree.',
+    'Full-funnel digital marketing services from OneSpheree: SEO, performance marketing, social media management, content marketing, lead generation, and marketing automation. Measurable growth for enterprises.',
   path: '/services/digital-marketing',
 });
 
@@ -31,11 +32,27 @@ export const metadata = buildMetadata({
  * Milestone 2: Web, Content, Lead Generation, Automation, Analytics & BI.
  * Milestone 3: Industries, Why, Process, Outcomes, Final CTA → footer.
  */
+const SERVICE_LD = serviceJsonLd({
+  name: 'Digital Marketing',
+  description:
+    'Full-funnel digital marketing services including SEO, performance marketing, social media management, content marketing, lead generation, and marketing automation.',
+  url: `${site.url}/services/digital-marketing`,
+  serviceType: 'SEO, Performance Marketing, Social Media Marketing, Content Marketing, Lead Generation',
+});
+
+const BREADCRUMB_LD = breadcrumbJsonLd([
+  { name: 'Home', href: '/' },
+  { name: 'Services', href: '/services' },
+  { name: 'Digital Marketing', href: '/services/digital-marketing' },
+]);
+
 export default function DigitalMarketingPage() {
   const { hero, overview, sections, industries, why, process, outcomes, cta } = digitalMarketingPage;
   const [seo, performance, social, web, content, leadGen, automation, analytics] = sections;
   return (
     <div className="dm-theme">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_LD) }} />
       <ServiceHero hero={hero} />
       <ServiceOverview overview={overview} />
       <SeoSection section={seo} />

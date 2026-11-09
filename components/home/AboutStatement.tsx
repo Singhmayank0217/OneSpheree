@@ -76,7 +76,7 @@ export function AboutStatement() {
             <p className="t-caption">Five disciplines, one accountable team</p>
           </div>
           <div>
-            <p className="font-display text-[1.5rem] font-bold text-heading">18 countries</p>
+            <p className="font-display text-[1.5rem] font-bold text-heading">3 countries</p>
             <p className="t-caption">Delivering to one global standard</p>
           </div>
           <div className="ms-auto">

@@ -13,12 +13,13 @@ import { ProcessSection } from '@/components/services/ProcessSection';
 import { OutcomesSection } from '@/components/services/OutcomesSection';
 import { ServiceCtaSection } from '@/components/services/ServiceCtaSection';
 import { dueDiligencePage } from '@/data/service-pages/due-diligence';
-import { buildMetadata } from '@/lib/seo';
+import { buildMetadata, serviceJsonLd, breadcrumbJsonLd } from '@/lib/seo';
+import { site } from '@/config/site';
 
 export const metadata = buildMetadata({
-  title: 'Due Diligence',
+  title: 'Due Diligence Services — Business Verification & Risk Assessment',
   description:
-    'Comprehensive due diligence and business verification — corporate, financial and vendor due diligence from OneSpheree.',
+    'Professional due diligence services from OneSpheree: corporate, financial, vendor, legal, and employee background verification. Accountable risk assessment for acquisitions, partnerships, and compliance.',
   path: '/services/due-diligence',
 });
 
@@ -31,11 +32,27 @@ export const metadata = buildMetadata({
  * Milestone 3: Industries, Why, Process, Outcomes, Final CTA → footer
  * (reusing the shared M3 components; only the data differs).
  */
+const SERVICE_LD = serviceJsonLd({
+  name: 'Due Diligence',
+  description:
+    'Corporate, financial, vendor, legal, and employee background verification. Accountable risk assessment for acquisitions, partnerships, and compliance.',
+  url: `${site.url}/services/due-diligence`,
+  serviceType: 'Corporate Due Diligence, Financial Due Diligence, Vendor Verification, Background Checks',
+});
+
+const BREADCRUMB_LD = breadcrumbJsonLd([
+  { name: 'Home', href: '/' },
+  { name: 'Services', href: '/services' },
+  { name: 'Due Diligence', href: '/services/due-diligence' },
+]);
+
 export default function DueDiligencePage() {
   const { hero, overview, sections, industries, why, process, outcomes, cta } = dueDiligencePage;
   const [corporate, financial, vendor, legal, employee, risk] = sections;
   return (
     <div className="dd-theme">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_LD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_LD) }} />
       <ServiceHero hero={hero} visual={<VerificationIllustration className="aspect-square w-full" />} />
       <ServiceOverview overview={overview} />
       <CorporateDDSection section={corporate} />
